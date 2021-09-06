@@ -1,0 +1,17 @@
+# Config File for Branch Switcher: https://github.com/s4heid/branch-switcher
+preferredBranch: develop
+# Branches and Labels containing the following Names will be ignored
+exclude:
+  - branch: a11y
+  - branch: a11y-*
+  - branch: accessibility
+  - branch: accessibility-*
+  - branch: develop-*
+  - branch: feature
+  - branch: feature-*
+  - branch: translation
+  - branch: translation-*
+  - label: Branch-Switcher-Ignore-On
+switchComment: >
+  Hello @{{author}}. The base Branch of your Pull Request has been changed to {{preferredBranch}}.
+  Please use for all future contributions the {{preferredBranch}} Branch. Thank you!

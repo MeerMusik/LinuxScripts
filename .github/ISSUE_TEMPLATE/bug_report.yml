@@ -1,0 +1,129 @@
+name: Bug Report Form. Technical Problems only! NOT FOR TRANSLATIONS! NOT FOR FEATURE REQUESTS!
+description: Something does not work as expected or not at all. Bugs. Glitches. UI Issues. The App crashes, hangs or does not launch.
+title: "[Bug]: "
+labels: ['Type: Bug', 'Status: Not Confirmed']
+assignees:
+  - MeerMusik
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thank you for filling out the Bug Report!
+      At this point, I do not accept Feature Requests! But feel free to create a Pull Request.
+- type: checkboxes
+  id: author-has-read-and-agrees-to-follow-contribution-rules
+  attributes:
+    label: Contribution Rules
+    description: By submitting this issue, you A.) confirm that you have read the [Contribution Rules](../blob/main/CONTRIBUTING.md) and B.) agree to follow them
+    options:
+    - label: I confirm that I have read the Contribution Rules and I agree to follow them
+      required: true
+- type: checkboxes
+  id: author-has-read-and-agrees-to-follow-code-of-conduct
+  attributes:
+    label: Code of Conduct
+    description: By submitting this issue, you A.) confirm that you have read the [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md) and B.) agree to follow it
+    options:
+    - label: I confirm that I have read the Code of Conduct and I agree to follow it
+      required: true
+- type: checkboxes
+  id: author-has-checked-issue-list
+  attributes:
+    label: Does an Issue already exist for this Bug?
+    description: Please look at the open Issues to make sure there is not already a Report for the Bug you have encountered!
+    options:
+    - label: I have looked at the existing open Issues. There is no open Issue for this specific Bug
+      required: true
+- type: input
+  id: name-of-the-broken-script
+  attributes:
+    label: Name of the broken Script or Scripts
+    description: "Which Scripts are broken? Use a numbered or bullet Point List to list one Script per Line please!"
+  validations:
+    required: false
+- type: textarea
+  id: bug-description
+  attributes:
+    label: Describe the Bug
+    description: Please describe the Bug as clear and concise as possible
+    placeholder: Example - The Script starts but configuring the Makefile fails
+    value: "Example: The Script starts but configuring the Makefile fails (Delete this Example Text!)"
+  validations:
+    required: true
+- type: dropdown
+  id: os-name
+  attributes:
+    label: Under which Linux Distribution and Desktop Environment do you use the Script? Multiple Answers possible
+    multiple: true
+    options:
+    - Arch Linux with GNOME Version 3
+    - Arch Linux with KDE Version 5
+    - Manjaro Linux with GNOME Version 3
+    - Manjaro Linux with KDE Version 5
+    - Other Distributions with GNOME 3 or KDE 5
+  validations:
+    required: true
+- type: input
+  id: name-bsd-linux-distribution-desktop-environment
+  attributes:
+    label: If you selected 'Other Distributions', type the Name of the Linux Distributions and the Desktop Environments
+    description: "If you selected 'Other' above, type the Name of the Distributions and the Name of the Desktop Environments."
+  validations:
+    required: false
+- type: dropdown
+  id: os-bitness
+  attributes:
+    label: Architecture Operating System
+    description: Which Architecture is your Operating System? Multiple Answers possible
+    multiple: true
+    options:
+    - X86 (32-Bit)
+    - X86_64 (64-Bit)
+    - 64-Bit with 32-Bit Multilibs, Compatibility Layer or something similar
+  validations:
+    required: true
+- type: dropdown
+  id: linux-wayland-x11
+  attributes:
+    label: Does the Bug happens on Wayland or X11?
+    description: Does the Bug happen under Wayland or X11? Or both? Multiple Answers possible
+    multiple: true
+    options:
+    - Wayland only
+    - X11 only
+    - Wayland AND X11
+- type: dropdown
+  id: tool-script-bitness
+  attributes:
+    label: Architecture of the Script
+    description: Which Architecture of the Script is broken? Multiple Answers possible
+    multiple: true
+    options:
+    - X86 (32-Bit)
+    - X86_64 (64-Bit)
+    - X86 AND X86_64
+  validations:
+    required: true
+- type: dropdown
+  id: which-library-version-is-used
+  attributes:
+    label: Do you use the same Version which is listed in the Script or ReadMe.md? Or a newer Version?
+    description: If you use a OLDER Version (which is NOT supported!) than mentioned in the Script or ReadMe, do NOT submit your Bug Report!
+    multiple: false
+    options:
+    - I use the SAME VERSION of the Library as set up in the Script
+    - I use a NEWER VERSION of the Library than set up in the Script
+    - I use a OLDER and NOT SUPPORTED VERSION of the Library than set up in the Script -> Please Stop right here and do NOT Submit your Bug Report!
+  validations:
+    required: true
+- type: textarea
+  id: additional_infos_from_issue_creator
+  attributes:
+    label: Anything you would like to add?
+    description: If you have additional Infos you would like to add, you can do this here
+- type: textarea
+  id: additional_logs
+  attributes:
+    label: Relevant Log Output
+    description: Please copy and paste any relevant Log Output if available. This will be automatically formatted into code, so no need for backticks.
+    render: shell

@@ -1,0 +1,16 @@
+# Set Encoding, declare if text or binary and set the Line Feed (LF) and Carriage Return (CR) Values
+# GitHub Config Files
+*.json text encoding=utf-8 eol=lf
+pull_request_template.md encoding=utf-8 eol=lf
+# Remove 'WaitingForYamlSupport.md' after creating the Yaml Pull Request Templates!
+WaitingForYamlSupport.md encoding=utf-8 eol=lf
+*.yml text encoding=utf-8 eol=lf
+*.yaml text encoding=utf-8 eol=lf
+# All other Files
+*.md text encoding=utf-8 eol=lf
+*.sh text encoding=utf-8 eol=lf
+*.txt text encoding=utf-8 eol=lf
+python text encoding=utf-8 eol=lf
+CC0-1.0.txt text encoding=utf-8 eol=lf
+LICENSE text encoding=utf-8 eol=lf
+THE_UNLICENSE.txt text encoding=utf-8 eol=lf

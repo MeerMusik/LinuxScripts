@@ -1,0 +1,55 @@
+name: Feature Request Form. For technical Problems, use the Bug Report Form! For everything about Translations, use the Translation Form!
+description: To wish a new Feature or a new Option for an existing Feature. To wish multiple new Features or Options, please create a new Issue for each new Feature and Option! Thank you!
+title: "[Feature Request]: "
+labels: ['Type: Feature Request']
+assignees:
+  - MeerMusik
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thank you for taking the time to fill out the Feature Request Form!
+      If you wish to request multiple new Features or Options, please create a new Issue for each new Feature and Option!
+      For technical Problems, please use the Bug Report Form. For everything about Translations, please use the Translation Form.
+- type: checkboxes
+  id: author-has-read-and-agrees-to-follow-contribution-rules
+  attributes:
+    label: Contribution Rules
+    description: By submitting this issue, you A.) confirm that you have read the [Contribution Rules](../blob/main/CONTRIBUTING.md) and B.) agree to follow them
+    options:
+    - label: I confirm that I have read the Contribution Rules and I agree to follow them
+      required: true
+- type: checkboxes
+  id: author-has-read-and-agrees-to-follow-code-of-conduct
+  attributes:
+    label: Code of Conduct
+    description: By submitting this issue, you A.) confirm that you have read the [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md) and B.) agree to follow it
+    options:
+    - label: I confirm that I have read the Code of Conduct and I agree to follow it
+      required: true
+- type: checkboxes
+  id: author-has-checked-issue-list
+  attributes:
+    label: Does an Issue already exist for this Feature Request?
+    description: Please look at the existing Issues if there is already a request for the Feature or Option you wish to request!
+    options:
+    - label: I have looked at the existing Issues. There is no Issue for this specific Feature or Option
+      required: true
+- type: textarea
+  id: new-feature-description
+  attributes:
+    label: Describe the Feature
+    description: Please describe the Feature or Option as clear and concise as possible
+    placeholder: Example - When I open the Print Preview, I need to change the Fontsize.
+    value: "Example - When I open the Print Preview, I need to change the Fontsize. (Delete this Example Text!)"
+  validations:
+    required: true
+- type: textarea
+  id: new-feature-use-case
+  attributes:
+    label: Describe the use case
+    description: Please describe the use case as clear and concise as possible
+    placeholder: Example - The Text in the Print Preview is too small and I can not read it
+    value: "Example - The Text in the Print Preview is too small and I can not read it. (Delete this Example Text!)"
+  validations:
+    required: true

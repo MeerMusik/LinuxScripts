@@ -1,0 +1,16 @@
+# Config File for https://github.com/SvanBoxel/delete-merged-branch
+# The following branches will not automatically be deleted
+exclude:
+  - a11y
+  - a11y-*
+  - accessibility
+  - accessibility-*
+  - develop
+  - develop-*
+  - feature
+  - feature-*
+  - translation
+  - translation-*
+  - main
+# Whether or not a branch should be deleted if a Pull Request is closed without merging
+delete_closed_pr: true

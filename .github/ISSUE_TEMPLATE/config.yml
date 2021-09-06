@@ -1,0 +1,7 @@
+# Do not allow creating Issues without a body text = Disable the Default GitHub Issue Creator
+blank_issues_enabled: false
+# Some Links that should help getting in Contact, answering Questions etc. to hopefully limit unnecessary Issues
+contact_links:
+  - name: Twitter
+    url: https://twitter.com/MeerMusik
+    about: Ask me a short Question on Twitter. Replies take somewhere between 2 - 96 hours. Tweets are public and readable by everyone! If you need to send personal Data, send me a Direct Message = DM!

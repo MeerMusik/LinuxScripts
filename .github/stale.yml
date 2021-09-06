@@ -1,0 +1,64 @@
+# Configuration for probot-stale - https://github.com/probot/stale
+
+# Number of Days of inactivity before an Issue or Pull Request becomes stale - Default: 60
+daysUntilStale: 60
+
+# Number of Days of inactivity before an Issue or Pull Request with the stale label is closed.
+# Set to false to disable. If disabled, Issues still need to be closed manually, but will remain marked as stale. - Default: 7
+daysUntilClose: 7
+
+# Only Issues or Pull Requests with all of these Labels are checked if they are stale. Defaults to `[]` (disabled)
+onlyLabels: []
+
+# Issues or Pull Requests with these Labels will never be considered stale. Set to `[]` to disable
+exemptLabels:
+  - "Status: Do Not Mark As Stale"
+  - "Status: Pinned"
+  - "Type: Question"
+  - "Type: Security"
+
+# Set to true to ignore Issues in a Project (defaults to false)
+exemptProjects: false
+
+# Set to true to ignore Issues in a Milestone (defaults to false)
+exemptMilestones: false
+
+# Set to true to ignore Issues with an Assignee (defaults to false)
+exemptAssignees: false
+
+# Label to use when marking as stale
+staleLabel: "Status: Marked Stale by StaleBot"
+
+# Comment to post when marking as stale. Set to `false` to disable
+markComment: >
+  This Issue has been automatically marked as stale because it has not had recent activity for 60 Days.
+  It will be closed in 7 Days if no further activity occurs. Thank you for your contribution.
+
+# Comment to post when removing the stale label.
+# unmarkComment: >
+#   Your comment here.
+
+# Comment to post when closing a stale Issue or Pull Request.
+closeComment: >
+  This Issue was not updated after it was marked as stale. The second Timeframe to add the required Information has expired.
+  This Issue is now closed! Feel free to re-open the Issue by adding the required Information!
+  If you just re-open the Issue without adding the required Information, the Issue will be closed again.
+  Thank you for your understanding!
+
+# Limit the Number of Actions per Hour, from 1-30. Default is 30
+limitPerRun: 30
+
+# Limit to only `issues` or `pulls`
+# only: issues
+
+# Optionally, specify configuration settings that are specific to just 'issues' or 'pulls':
+# pulls:
+#   daysUntilStale: 30
+#   markComment: >
+#     This pull request has been automatically marked as stale because it has not had
+#     recent activity. It will be closed if no further activity occurs. Thank you
+#     for your contributions.
+
+# issues:
+#   exemptLabels:
+#     - confirmed

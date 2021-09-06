@@ -1,0 +1,58 @@
+name: Translation Form. Add a new Translation. Fix an existing Translation. DO NOT REMOVE 'WIP' FROM THE TITLE! DO NOT REMOVE THE 'Work In Progress' LABEL! - Temporary Solution! Sorry for the mess!
+description: You can use the Locales from Column '639-1' listed at https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+title: "[Translation]: WIP: "
+labels: ['Type: Translation', 'Status: Work In Progress']
+assignees:
+  - MeerMusik
+body:
+- type: markdown
+  attributes:
+    value: |
+      DO NOT REMOVE 'WIP' FROM THE TITLE! DO NOT REMOVE THE 'Status: Work In Progress' LABEL! TRANSLATIONS WILL BE CHECKED MANUALLY!
+      I will update the Title and Label when I am ready to integrate your changes!
+       
+      If you want to add multiple Languages, please create a new Issue for each Language!
+      
+      Thank you for helping to translate the Tool!
+- type: checkboxes
+  id: author-has-read-and-agrees-to-follow-contribution-rules
+  attributes:
+    label: Contribution Rules
+    description: By submitting this issue, you A.) confirm that you have read the [Contribution Rules](../blob/main/CONTRIBUTING.md) and B.) agree to follow them
+    options:
+    - label: I confirm that I have read the Contribution Rules and I agree to follow them
+      required: true
+- type: checkboxes
+  id: author-has-read-and-agrees-to-follow-code-of-conduct
+  attributes:
+    label: Code of Conduct
+    description: By submitting this issue, you A.) confirm that you have read the [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md) and B.) agree to follow it
+    options:
+    - label: I confirm that I have read the Code of Conduct and I agree to follow it
+      required: true
+- type: checkboxes
+  id: author-has-checked-issue-list
+  attributes:
+    label: Does an open Issue already exist for this Translation?
+    description: Please search through the open Issues if there is already an open Issue for the Language you wish to add or fix!
+    options:
+    - label: I have searched through the existing open Issues. There is no open Issue for this specific Translation
+      required: true
+- type: textarea
+  id: new-language
+  attributes:
+    label: Which Language and Locale do you wish to add or fix?
+    description: If you are unsure, you can use the Locales from Column '639-1' from https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+    placeholder: Example 1 - English, en - Example 2 - German, de. - For now, No differentiation between for Example US and UK; German Germany and Germany Switzerland!
+    value: "Example 1 - English, en - Example 2 - German, de. - For now, No differentiation between for Example US and UK; German Germany and Germany Switzerland! (Delete this Example Text!)"
+  validations:
+    required: true
+- type: textarea
+  id: language-strings
+  attributes:
+    label: Please add the Translated Strings here
+    description: Please use for example a Numbered List to display Translated Strings Line by Line!
+    placeholder: Only one translated String per Line please! You can use a numbered List to display Strings Line by Line! Sorry for the inconvenience! I am looking for a better Solution long-term!
+    value: "Only one translated String per Line please! You can use a numbered List to display Strings Line by Line! Sorry for the inconvenience! I am looking for a better Solution long-term! (Delete this Example Text!)"
+  validations:
+    required: true

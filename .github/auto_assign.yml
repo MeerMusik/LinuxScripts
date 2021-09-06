@@ -1,0 +1,37 @@
+# Configuration for auto_assign - https://github.com/kentaro-m/auto-assign/
+# Set to true to add Reviewers to Pull Requests
+addReviewers: true
+
+# Set to true to add Assignees to Pull Requests
+#addAssignees: true
+
+# A list of Reviewers to be added to Pull Requests (GitHub User Name)
+reviewers:
+  - MeerMusik
+  #- reviewerB
+  #- reviewerC
+
+# A Number of Reviewers added to the Pull Request
+# Set 0 to add all the reviewers (default: 0)
+numberOfReviewers: 0
+
+# A list of Assignees, overrides Reviewers if set
+# assignees:
+#   - assigneeA
+
+# Set to author to set PR Creator as Assignee
+addAssignees: author
+
+# A Number of Assignees to add to the Pull Request
+# Set to 0 to add all of the Assignees.
+# Uses numberOfReviewers if unset.
+numberOfAssignees: 0
+
+# A list of Keywords to be skipped the process that add Reviewers if Pull Requests include it
+skipKeywords:
+   - WIP
+   - wip
+   - Work-in-Progress
+   - Work-In-Progress
+   - Work in Progress
+   - Work In Progress
