@@ -14,5 +14,5 @@ fi
 if [ -d $HOME/Dev/GitRepos/ICU/ ]; then rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/GitRepos/ICU/*.* $HOME/Dev/GitRepos/ICU/* $HOME/Dev/GitRepos/ICU/
 fi
 cd $HOME/Dev/GitRepos/
-git clone https://github.com/unicode-org/ICU.git/ --branch=maint/maint-69 --verbose --progress
+git clone https://github.com/unicode-org/ICU.git/ --branch=maint/maint-70 --verbose --progress
 exit
