@@ -28,7 +28,7 @@ echo Script paused for 10 Seconds to be able to read the Test Results! Please wa
 sleep 10s
 if [ ! -d $HOME/Dev/Binaries/ ]; then mkdir $HOME/Dev/Binaries/
 fi
-cp --force --verbose --recursive $HOME/Dev/Builds/UPPx64Debug/ $HOME/Dev/Binaries/UPPx64Debug/
+cp --force --verbose --recursive $HOME/Dev/Builds/UPPx64Debug/ $HOME/Dev/Binaries/
 rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/Builds/UPPx64Debug/*.* $HOME/Dev/Builds/UPPx64Debug/* $HOME/Dev/Builds/UPPx64Debug/
 exit
 
