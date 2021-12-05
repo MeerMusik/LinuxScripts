@@ -274,6 +274,30 @@ See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 ### QtIFW - Qt Installer Framework
 See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 
+### Ultimate++ - A C++ Cross-Platform Rapid Application Development Framework
+Status: Currently the replacement for Qt Framework<br>
+Version: Master Branch
+
+Additional Infos:
+1. The Scripts overwrite the CFLAGS and CXXFLAGS in the Makefile and umkMakefile: The Original Compiler Flags are kept but I switch from '-std=c++14' to '-std=c++20'
+2. The Compiler Flags to compile the IDE and UMK are WIP and need to be tested long-term
+3. Attention: This Framework does not contain any Accessibility API! If you need it, contact the Developers and let them know - maybe they will give it a higher Priority, if enough People ask about it
+4. As of now, when compiling the Binaries in X86 (32-Bit) mode, you will probably run into the following Error: 
+
+Infos:
+1. Documentation: https://www.ultimatepp.org/www$uppweb$documentation$en-us.html
+2. Download Source Archive or prebuilt Binaries directly: https://www.ultimatepp.org/www$uppweb$download$en-us.html
+
+Get the Source Code:
+1. Clone Git Repository to local Drive: [NewUPPGit.sh](UPPFramework/NewUPPGit.sh)
+2. Update local Git Repository: [UpdateUPPGit.sh](UPPFramework/UpdateUPPGit.sh)
+
+Build it:
+1. X86_64, Dynamic, Debug: [UPPx64Debug.sh](UPPFramework/UPPx64Debug.sh)
+2. X86_64, Dynamic, Release: [UPPx64.sh](UPPFramework/UPPx64.sh)
+3. X86, Dynamic, Debug: [UPPx86Debug.sh](UPPFramework/UPPx86Debug.sh)
+4. X86, Dynamic, Release: [UPPx86.sh](UPPFramework/UPPx86.sh)
+
 ### wxWidgets - C++ Toolkit
 Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>
 Version: Master Branch = Development Branch
