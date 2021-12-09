@@ -36,7 +36,7 @@ Other Linux Distributions are currently untested by me.
 
 Newer GNU GCC/G++ Versions should be compatible too.
 
-Older Versions should work if they are not too old. What too old means, has not been fully tested. I personally tested down to GCC 8.1.0
+Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested was GCC 8.1.0 back in 2019.
 
 You usually need to remove or modify some Compiler Flags for newer and older Versions.
 
@@ -44,7 +44,7 @@ Other Compiler Variants like Clang-GCC are untested and therefore not supported 
 
 All Scripts are heavily personalized and have a lot of Compiler Flags to fit my personal needs.
 
-Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document as I do not guarantee to keep it updated! If in doubt, look at the Scripts.
+Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document, as I do not guarantee to keep them updated! If in doubt, look at the Scripts.
 
 ## LICENSE
 The Content in this Repository is Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism).
@@ -94,9 +94,9 @@ Remember that Tweets are always public! Everyone can read what you write! If you
 
 ## List of Scripts
 ### AKKomPolTool / Pirates-Little-Helper - (WIP NAME. PLACEHOLDER)
-The Links to the Files have been removed while the Tool will be rewritten from Scratch with another Framework.
+The Links to the Files have been removed while the Tool will be rewritten from Scratch in another Framework.
 
-The old Source Code based on the Qt Framework will not be published: It is discontinued and in 'Recycle Mode'.
+The old Source Code, based on the Qt Framework, will not be published: It is discontinued and in 'Recycle Mode'.
 
 Info:
 1. My personal Website (German): https://oliverniebuhr.de
@@ -275,14 +275,27 @@ See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 
 ### Ultimate++ - A C++ Cross-Platform Rapid Application Development Framework
-Status: Currently the replacement for Qt Framework<br>
+Status: Currently the replacement for the Qt Framework<br>
 Version: Master Branch
 
 Additional Infos:
 1. The Scripts overwrite the CFLAGS and CXXFLAGS in the Makefile and umkMakefile: The Original Compiler Flags are kept but I switch from '-std=c++14' to '-std=c++20'
 2. The Compiler Flags to compile the IDE and UMK are WIP and need to be tested long-term
-3. Attention: This Framework does not contain any Accessibility API! If you need it, contact the Developers and let them know - maybe they will give it a higher Priority, if enough People ask about it
-4. As of now, when compiling the Binaries in X86 (32-Bit) mode, you will probably run into the following Error: 
+3. Attention: This Framework does not contain any Accessibility API! If you need that Feature, contact the UPP Developers and let them know - maybe they will give it a higher Priority, if enough People ask about it
+4. When trying to build the Binaries as X86 (32-Bit), you will probably run into the following Error:
+
+/usr/include/glib-2.0/glib/gtypes.h: In function 'gboolean _GLIB_CHECKED_ADD_U64(guint64*, guint64, guint64)':
+/usr/include/glib-2.0/glib/gtypes.h:463:47: error: static assertion failed: Expression evaluates to false
+463 |   G_STATIC_ASSERT(sizeof (unsigned long long) == sizeof (guint64));
+    |                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gmacros.h:823:46: note: in definition of macro 'G_STATIC_ASSERT'
+823 | #define G_STATIC_ASSERT(expr) static_assert (expr, "Expression evaluates to false")
+
+Possible work-around:
+1. Install the X86 Version of GLIB2 - if available at all for your Distribution
+    1. Make sure all GLIB2 Dependencies are installed as Lib32 Variants as well
+2. Switch to a still updated 32-Bit Distribution
+3. If nothing helps, you are out of Luck. Switch to X86_64 (64-Bit) as soon as you are able to and enjoy the Future :)
 
 Infos:
 1. Documentation: https://www.ultimatepp.org/www$uppweb$documentation$en-us.html
@@ -295,8 +308,13 @@ Get the Source Code:
 Build it:
 1. X86_64, Dynamic, Debug: [UPPx64Debug.sh](UPPFramework/UPPx64Debug.sh)
 2. X86_64, Dynamic, Release: [UPPx64.sh](UPPFramework/UPPx64.sh)
-3. X86, Dynamic, Debug: [UPPx86Debug.sh](UPPFramework/UPPx86Debug.sh)
-4. X86, Dynamic, Release: [UPPx86.sh](UPPFramework/UPPx86.sh)
+
+The 32-bit Scripts require a Installation of the X86 Version of GLIB2. This Version is usually outdated, only available in a User / Community Repository or not available at all anymore. Depending on your Distribution.<br>
+Therefore the X86 Scripts are in the 'Broken' Subdirectory.
+
+TODO: Move to Broken if not able get this to work!
+1. X86, Dynamic, Debug: [UPPx86Debug.sh](UPPFramework/UPPx86Debug.sh)
+2. X86, Dynamic, Release: [UPPx86.sh](UPPFramework/UPPx86.sh)
 
 ### wxWidgets - C++ Toolkit
 Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>
@@ -332,7 +350,7 @@ perl --version
 
 to see which Version is installed on your Distribution.
 
-If Perl is not found, install the prebuilt Binaries provided by your Distribution. Check your Distribution specific Installer on how to do that.
+If Perl is not found, install the prebuilt Binaries provided by your Distribution. Read the Instructions for the Package Manager of your Distribution on how to do that.
 
 3. Python 3.x Programming Language
     1. Required as an Interpreter for all Projects using Python Scripts
@@ -344,7 +362,7 @@ python --version
 
 to see which Version is installed on your Distribution.
 
-If Python is not found, install the prebuilt Binaries provided by your Distribution. Check your Distribution specific Installer on how to do that.
+If Python is not found, install the prebuilt Binaries provided by your Distribution. Read the Instructions for the Package Manager of your Distribution on how to do that.
 
 ## WindowsScripts
 I also published my Windows Scripts Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism):
