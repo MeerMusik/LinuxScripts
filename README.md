@@ -281,8 +281,10 @@ Version: Master Branch
 Additional Infos:
 1. The Scripts overwrite the CFLAGS and CXXFLAGS in the Makefile and umkMakefile: The Original Compiler Flags are kept but I switch from '-std=c++14' to '-std=c++20'
 2. The Compiler Flags to compile the IDE and UMK are WIP and need to be tested long-term
-3. Attention: This Framework does not contain any Accessibility API! If you need that Feature, contact the UPP Developers and let them know - maybe they will give it a higher Priority, if enough People ask about it
-4. When trying to build the Binaries as X86 (32-Bit), you will probably run into the following Error:
+3. The Build Scripts are writing by Default to: 1>/dev/null 2>&1 - Otherwise it would take 10x-20x longer to build everything. Bash is simply horribly slow.
+    1. Enabling Output to a Log File is disabled by Default: The Size of the Log Files for building the IDE are 1.4 Gigabyte each!
+4. Attention: This Framework does not contain any Accessibility API! If you need that Feature, contact the UPP Developers and let them know - maybe they will give it a higher Priority, if enough People ask about it
+5. When trying to build the Binaries as X86 = 32-Bit, you will probably run into the following Error:
 
 /usr/include/glib-2.0/glib/gtypes.h: In function 'gboolean _GLIB_CHECKED_ADD_U64(guint64*, guint64, guint64)':
 /usr/include/glib-2.0/glib/gtypes.h:463:47: error: static assertion failed: Expression evaluates to false
@@ -291,10 +293,20 @@ Additional Infos:
 /usr/include/glib-2.0/glib/gmacros.h:823:46: note: in definition of macro 'G_STATIC_ASSERT'
 823 | #define G_STATIC_ASSERT(expr) static_assert (expr, "Expression evaluates to false")
 
-Possible work-around:
-1. Install the X86 Version of GLIB2 - if available at all for your Distribution
-    1. Make sure all GLIB2 Dependencies are installed as Lib32 Variants as well
-2. Switch to a still updated 32-Bit Distribution
+1. Install the Lib32 Variant of GLIB2
+2. Make sure all GLIB2 Dependencies are installed as Lib32 Variants as well
+
+Additional Hints for building X86 Libraries on a X86_64 PC:
+Ultimate++ requires specific Libraries. Make sure that you have all the Lib32 Variants of the required Libraries installed!
+1. You can run the [InstallRequired64BitLibs.sh](UPPFramework/InstallRequired64BitLibs.sh) which is part of this Repository - !! Not guaranteed to be up2date !!
+    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
+    2. You can of course also just take a look at these Scripts without installing anything if you do not need or want to!
+    3. This should install all required x86_64 Variants on all supported Distributions. After that, take a look at the Install Script and install the Lib32 Variants accordingly!
+    4. You should be able to easily distinguish the correct Names for your Distribution, by looking for the Name of your Package Manager like apt-get, pacman, zypper etc.
+
+You can also try:
+1. Run 'sudo pamac install multilib-devel' (For Manjaro; modify for your Distro as necessary!) - this should install the very basics for Multilib Developement as a starting point
+2. Switch to a still updated pure 32-Bit Distribution
 3. If nothing helps, you are out of Luck. Switch to X86_64 (64-Bit) as soon as you are able to and enjoy the Future :)
 
 Infos:
@@ -305,16 +317,18 @@ Get the Source Code:
 1. Clone Git Repository to local Drive: [NewUPPGit.sh](UPPFramework/NewUPPGit.sh)
 2. Update local Git Repository: [UpdateUPPGit.sh](UPPFramework/UpdateUPPGit.sh)
 
+Install the required Libraries for Ultimate++ for X86_64 on supported Distributions:
+1. [InstallRequired64BitLibs.sh](UPPFramework/InstallRequired64BitLibs.sh) !! Not guaranteed to be up2date !!
+    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
+
+Install the required Libraries for Ultimate++ for X86 on supported Distributions - WIP!! ONLY DONE FOR MANJARO AND OTHER ARCH BASED DISTROS!!!
+1. [InstallRequired32BitLibs.sh](UPPFramework/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
+
 Build it:
 1. X86_64, Dynamic, Debug: [UPPx64Debug.sh](UPPFramework/UPPx64Debug.sh)
 2. X86_64, Dynamic, Release: [UPPx64.sh](UPPFramework/UPPx64.sh)
-
-The 32-bit Scripts require a Installation of the X86 Version of GLIB2. This Version is usually outdated, only available in a User / Community Repository or not available at all anymore. Depending on your Distribution.<br>
-Therefore the X86 Scripts are in the 'Broken' Subdirectory.
-
-TODO: Move to Broken if not able get this to work!
-1. X86, Dynamic, Debug: [UPPx86Debug.sh](UPPFramework/UPPx86Debug.sh)
-2. X86, Dynamic, Release: [UPPx86.sh](UPPFramework/UPPx86.sh)
+3. X86, Dynamic, Debug: [UPPx86Debug.sh](UPPFramework/UPPx86Debug.sh)
+4. X86, Dynamic, Release: [UPPx86.sh](UPPFramework/UPPx86.sh)
 
 ### wxWidgets - C++ Toolkit
 Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>
