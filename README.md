@@ -297,15 +297,15 @@ Additional Infos:
 2. Make sure all GLIB2 Dependencies are installed as Lib32 Variants as well
 
 Additional Hints for building X86 Libraries on a X86_64 PC:
-Ultimate++ requires specific Libraries. Make sure that you have all the Lib32 Variants of the required Libraries installed!
-1. You can run the [InstallRequired64BitLibs.sh](UPPFramework/InstallRequired64BitLibs.sh) which is part of this Repository - !! Not guaranteed to be up2date !!
+Ultimate++ requires specific Libraries like GTK3 and its Dependencies. Make sure that you have all the Lib32 Variants of the required Libraries installed!
+1. You can run the [InstallRequired64BitLibs.sh](UPP/InstallRequired64BitLibs.sh) which is part of this Repository - !! Not guaranteed to be up2date !!
     1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
     2. You can of course also just take a look at these Scripts without installing anything if you do not need or want to!
     3. This should install all required x86_64 Variants on all supported Distributions. After that, take a look at the Install Script and install the Lib32 Variants accordingly!
     4. You should be able to easily distinguish the correct Names for your Distribution, by looking for the Name of your Package Manager like apt-get, pacman, zypper etc.
 
 You can also try:
-1. Run 'sudo pamac install multilib-devel' (For Manjaro; modify for your Distro as necessary!) - this should install the very basics for Multilib Developement as a starting point
+1. Run 'sudo pamac install multilib-devel' (For Manjaro; modify for your Distro as necessary!) - this should install the very basics for Multilib Development as a starting point
 2. Switch to a still updated pure 32-Bit Distribution
 3. If nothing helps, you are out of Luck. Switch to X86_64 (64-Bit) as soon as you are able to and enjoy the Future :)
 
@@ -314,21 +314,44 @@ Infos:
 2. Download Source Archive or prebuilt Binaries directly: https://www.ultimatepp.org/www$uppweb$download$en-us.html
 
 Get the Source Code:
-1. Clone Git Repository to local Drive: [NewUPPGit.sh](UPPFramework/NewUPPGit.sh)
-2. Update local Git Repository: [UpdateUPPGit.sh](UPPFramework/UpdateUPPGit.sh)
+1. Clone Git Repository to local Drive: [NewUPPGit.sh](UPP/NewUPPGit.sh)
+2. Update local Git Repository: [UpdateUPPGit.sh](UPP/UpdateUPPGit.sh)
 
 Install the required Libraries for Ultimate++ for X86_64 on supported Distributions:
-1. [InstallRequired64BitLibs.sh](UPPFramework/InstallRequired64BitLibs.sh) !! Not guaranteed to be up2date !!
+1. [InstallRequired64BitLibs.sh](UPP/Extras/InstallRequired64BitLibs.sh) !! Not guaranteed to be up2date !!
     1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
 
 Install the required Libraries for Ultimate++ for X86 on supported Distributions - WIP!! ONLY DONE FOR MANJARO AND OTHER ARCH BASED DISTROS!!!
-1. [InstallRequired32BitLibs.sh](UPPFramework/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
+1. [InstallRequired32BitLibs.sh](UPP/Extras/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
 
 Build it:
-1. X86_64, Dynamic, Debug: [UPPx64Debug.sh](UPPFramework/UPPx64Debug.sh)
-2. X86_64, Dynamic, Release: [UPPx64.sh](UPPFramework/UPPx64.sh)
-3. X86, Dynamic, Debug: [UPPx86Debug.sh](UPPFramework/UPPx86Debug.sh)
-4. X86, Dynamic, Release: [UPPx86.sh](UPPFramework/UPPx86.sh)
+1. X86_64, Dynamic, Debug: [UPPx64Debug.sh](UPP/UPPx64Debug.sh)
+2. X86_64, Dynamic, Release: [UPPx64.sh](UPP/UPPx64.sh)
+3. X86, Dynamic, Debug: [UPPx86Debug.sh](UPP/UPPx86Debug.sh)
+4. X86, Dynamic, Release: [UPPx86.sh](UPP/UPPx86.sh)
+
+### Ultimate++ - Additional Files
+Ultimate++ lets you create a .desktop File by using 'Install theide.desktop' from the 'Setup' Menu in the UPP Editor. In case this does not work on your System, the provided Files can be used as a starting point.
+
+As the Ultimate++ Editor has some obvious limitations, I am also providing my .desktop Files, to set up addtional Environment Paths to build 32-Bit Libraries and Applications on a 64-Bit Multilib OS.
+
+One File launches the x86_64 Version with no additional Environment Settings. The 32-bit Variant adds the following Values to the Exec Entry:
+
+1. CPPFLAGS=-L/usr/lib32/ LD_LIBRARY_PATH=/usr/lib32/ PKG_CONFIG_PATH=/usr/lib32/pkgconfig/
+
+Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username.
+
+I am NOT providing the PNG File for the Icon: It will automatically copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
+
+Ultimate++ .desktop Files:
+1. 64-Bit IDE - 32-Bit Paths: [TheIDE_32BitPaths.desktop](UPP/Extras/TheIDE_32BitPaths.desktop)
+2. 64-Bit IDE - Default Paths: [TheIDE_DefaultPaths.desktop](UPP/Extras/TheIDE_DefaultPaths.desktop)
+
+Alternatively: Use Shell Shell Scripts:
+1. 64-Bit IDE - 32-Bit Paths: [StartIDE32BitPaths.sh](UPP/Extras/StartIDE32BitPaths.sh)
+2. 64-Bit IDE - Default Paths: [StartIDEDefaultPaths.sh](UPP/Extras/StartIDEDefaultPaths.sh)
+
+I have not yet found a Solution to set up additional Environment Paths depending on Compiler usage. I will contact the UPP Developers and ask if there is a better Solution. If there is, the Files will probably later removed again from this Repository.
 
 ### wxWidgets - C++ Toolkit
 Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>

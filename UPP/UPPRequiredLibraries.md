@@ -11,14 +11,14 @@ I will keep this List updated when time permits. If in doubt, check the followin
 2. [umkMakefile - UPP Repository](https://github.com/ultimatepp/ultimatepp/blob/master/umkMakefile)
 
 ## Install the required Libraries for Ultimate++ for X86_64 on supported Distributions:
-1. [InstallRequired64BitLibs.sh](UPPFramework/InstallRequired64BitLibs.sh) !! Not guaranteed to be up2date !!
+1. [InstallRequired64BitLibs.sh](UPP/Extras/InstallRequired64BitLibs.sh) !! Not guaranteed to be up2date !!
 2. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
 
 ## Install the required Libraries for Ultimate++ for X86 on supported Distributions:
 !!! ONLY THE MANJARO SECTION HAS BEEN PORTED YET !!!
 !!! YOU ALSO NEED TO ENABLE THE ARCH USER REPOSITORIES WHEN USING A ARCH BASED DISTRIBUTION !!!
 
-1. [InstallRequired32BitLibs.sh](UPPFramework/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
+1. [InstallRequired32BitLibs.sh](UPP/Extras/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
 2. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
 
 Feel free to create an Issue, update the Script and create a Merge Request!
