@@ -299,7 +299,7 @@ Additional Infos:
 Additional Hints for building X86 Libraries on a X86_64 PC:
 Ultimate++ requires specific Libraries like GTK3 and its Dependencies. Make sure that you have all the Lib32 Variants of the required Libraries installed!
 1. You can run the [InstallRequired64BitLibs.sh](UPP/InstallRequired64BitLibs.sh) which is part of this Repository - !! Not guaranteed to be up2date !!
-    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
+    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [Ultimate++ Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
     2. You can of course also just take a look at these Scripts without installing anything if you do not need or want to!
     3. This should install all required x86_64 Variants on all supported Distributions. After that, take a look at the Install Script and install the Lib32 Variants accordingly!
     4. You should be able to easily distinguish the correct Names for your Distribution, by looking for the Name of your Package Manager like apt-get, pacman, zypper etc.
@@ -317,11 +317,11 @@ Get the Source Code:
 1. Clone Git Repository to local Drive: [NewUPPGit.sh](UPP/NewUPPGit.sh)
 2. Update local Git Repository: [UpdateUPPGit.sh](UPP/UpdateUPPGit.sh)
 
-Install the required Libraries for Ultimate++ for X86_64 on supported Distributions:
+Install the minimum required Libraries for Ultimate++ for X86_64 on supported Distributions:
 1. [InstallRequired64BitLibs.sh](UPP/Extras/InstallRequired64BitLibs.sh) !! Not guaranteed to be up2date !!
-    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
+    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [Ultimate++ Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
 
-Install the required Libraries for Ultimate++ for X86 on supported Distributions - WIP!! ONLY DONE FOR MANJARO AND OTHER ARCH BASED DISTROS!!!
+Install the minimum required Libraries for Ultimate++ for X86 on supported Distributions - WIP!! ONLY DONE FOR MANJARO AND OTHER ARCH BASED DISTROS!!!
 1. [InstallRequired32BitLibs.sh](UPP/Extras/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
 
 Build it:
@@ -337,7 +337,7 @@ As the Ultimate++ Editor has some obvious limitations, I am also providing my .d
 
 One File launches the x86_64 Version with no additional Environment Settings. The 32-bit Variant adds the following Values to the Exec Entry:
 
-1. CPPFLAGS=-L/usr/lib32/ LD_LIBRARY_PATH=/usr/lib32/ PKG_CONFIG_PATH=/usr/lib32/pkgconfig/
+1. LD_LIBRARY_PATH=/usr/lib32/ PKG_CONFIG_PATH=/usr/lib32/pkgconfig/
 
 Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username.
 
