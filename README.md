@@ -36,7 +36,7 @@ Other Linux Distributions are currently untested by me.
 
 Newer GNU GCC/G++ Versions should be compatible too.
 
-Older Versions should work if they are not too old. What too old means, has not been fully tested. I personally tested down to GCC 8.1.0
+Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested was GCC 8.1.0 back in 2019.
 
 You usually need to remove or modify some Compiler Flags for newer and older Versions.
 
@@ -44,7 +44,7 @@ Other Compiler Variants like Clang-GCC are untested and therefore not supported 
 
 All Scripts are heavily personalized and have a lot of Compiler Flags to fit my personal needs.
 
-Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document as I do not guarantee to keep it updated! If in doubt, look at the Scripts.
+Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document, as I do not guarantee to keep them updated! If in doubt, look at the Scripts.
 
 ## LICENSE
 The Content in this Repository is Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism).
@@ -94,9 +94,9 @@ Remember that Tweets are always public! Everyone can read what you write! If you
 
 ## List of Scripts
 ### AKKomPolTool / Pirates-Little-Helper - (WIP NAME. PLACEHOLDER)
-The Links to the Files have been removed while the Tool will be rewritten from Scratch with another Framework.
+The Links to the Files have been removed while the Tool will be rewritten from Scratch in another Framework.
 
-The old Source Code based on the Qt Framework will not be published: It is discontinued and in 'Recycle Mode'.
+The old Source Code, based on the Qt Framework, will not be published: It is discontinued and in 'Recycle Mode'.
 
 Info:
 1. My personal Website (German): https://oliverniebuhr.de
@@ -274,6 +274,85 @@ See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 ### QtIFW - Qt Installer Framework
 See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 
+### Ultimate++ - A C++ Cross-Platform Rapid Application Development Framework
+Status: Currently the replacement for the Qt Framework<br>
+Version: Master Branch
+
+Additional Infos:
+1. The Scripts overwrite the CFLAGS and CXXFLAGS in the Makefile and umkMakefile: The Original Compiler Flags are kept but I switch from '-std=c++14' to '-std=c++20'
+2. The Compiler Flags to compile the IDE and UMK are WIP and need to be tested long-term
+3. The Build Scripts are writing by Default to: 1>/dev/null 2>&1 - Otherwise it would take 10x-20x longer to build everything. Bash is simply horribly slow.
+    1. Enabling Output to a Log File is disabled by Default: The Size of the Log Files for building the IDE are 1.4 Gigabyte each!
+4. Attention: This Framework does not contain any Accessibility API! If you need that Feature, contact the UPP Developers and let them know - maybe they will give it a higher Priority, if enough People ask about it
+5. When trying to build the Binaries as X86 = 32-Bit, you will probably run into the following Error:
+
+/usr/include/glib-2.0/glib/gtypes.h: In function 'gboolean _GLIB_CHECKED_ADD_U64(guint64*, guint64, guint64)':
+/usr/include/glib-2.0/glib/gtypes.h:463:47: error: static assertion failed: Expression evaluates to false
+463 |   G_STATIC_ASSERT(sizeof (unsigned long long) == sizeof (guint64));
+    |                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gmacros.h:823:46: note: in definition of macro 'G_STATIC_ASSERT'
+823 | #define G_STATIC_ASSERT(expr) static_assert (expr, "Expression evaluates to false")
+
+1. Install the Lib32 Variant of GLIB2
+2. Make sure all GLIB2 Dependencies are installed as Lib32 Variants as well
+
+Additional Hints for building X86 Libraries on a X86_64 PC:
+Ultimate++ requires specific Libraries like GTK3 and its Dependencies. Make sure that you have all the Lib32 Variants of the required Libraries installed!
+1. You can run the [InstallRequired64BitLibs.sh](UPP/InstallRequired64BitLibs.sh) which is part of this Repository - !! Not guaranteed to be up2date !!
+    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [Ultimate++ Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
+    2. You can of course also just take a look at these Scripts without installing anything if you do not need or want to!
+    3. This should install all required x86_64 Variants on all supported Distributions. After that, take a look at the Install Script and install the Lib32 Variants accordingly!
+    4. You should be able to easily distinguish the correct Names for your Distribution, by looking for the Name of your Package Manager like apt-get, pacman, zypper etc.
+
+You can also try:
+1. Run 'sudo pamac install multilib-devel' (For Manjaro; modify for your Distro as necessary!) - this should install the very basics for Multilib Development as a starting point
+2. Switch to a still updated pure 32-Bit Distribution
+3. If nothing helps, you are out of Luck. Switch to X86_64 (64-Bit) as soon as you are able to and enjoy the Future :)
+
+Infos:
+1. Documentation: https://www.ultimatepp.org/www$uppweb$documentation$en-us.html
+2. Download Source Archive or prebuilt Binaries directly: https://www.ultimatepp.org/www$uppweb$download$en-us.html
+
+Get the Source Code:
+1. Clone Git Repository to local Drive: [NewUPPGit.sh](UPP/NewUPPGit.sh)
+2. Update local Git Repository: [UpdateUPPGit.sh](UPP/UpdateUPPGit.sh)
+
+Install the minimum required Libraries for Ultimate++ for X86_64 on supported Distributions:
+1. [InstallRequired64BitLibs.sh](UPP/Extras/InstallRequired64BitLibs.sh) !! Not guaranteed to be up2date !!
+    1. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [Ultimate++ Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
+
+Install the minimum required Libraries for Ultimate++ for X86 on supported Distributions - WIP!! ONLY DONE FOR MANJARO AND OTHER ARCH BASED DISTROS!!!
+1. [InstallRequired32BitLibs.sh](UPP/Extras/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
+
+Build it:
+1. X86_64, Dynamic, Debug: [UPPx64Debug.sh](UPP/UPPx64Debug.sh)
+2. X86_64, Dynamic, Release: [UPPx64.sh](UPP/UPPx64.sh)
+3. X86, Dynamic, Debug: [UPPx86Debug.sh](UPP/UPPx86Debug.sh)
+4. X86, Dynamic, Release: [UPPx86.sh](UPP/UPPx86.sh)
+
+### Ultimate++ - Additional Files
+Ultimate++ lets you create a .desktop File by using 'Install theide.desktop' from the 'Setup' Menu in the UPP Editor. In case this does not work on your System, the provided Files can be used as a starting point.
+
+As the Ultimate++ Editor has some obvious limitations, I am also providing my .desktop Files, to set up addtional Environment Paths to build 32-Bit Libraries and Applications on a 64-Bit Multilib OS.
+
+One File launches the x86_64 Version with no additional Environment Settings. The 32-bit Variant adds the following Values to the Exec Entry:
+
+1. LD_LIBRARY_PATH=/usr/lib32/ PKG_CONFIG_PATH=/usr/lib32/pkgconfig/
+
+Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username.
+
+I am NOT providing the PNG File for the Icon: It will automatically copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
+
+Ultimate++ .desktop Files:
+1. 64-Bit IDE - 32-Bit Paths: [TheIDE_32BitPaths.desktop](UPP/Extras/TheIDE_32BitPaths.desktop)
+2. 64-Bit IDE - Default Paths: [TheIDE_DefaultPaths.desktop](UPP/Extras/TheIDE_DefaultPaths.desktop)
+
+Alternatively: Use Shell Shell Scripts:
+1. 64-Bit IDE - 32-Bit Paths: [StartIDE32BitPaths.sh](UPP/Extras/StartIDE32BitPaths.sh)
+2. 64-Bit IDE - Default Paths: [StartIDEDefaultPaths.sh](UPP/Extras/StartIDEDefaultPaths.sh)
+
+I have not yet found a Solution to set up additional Environment Paths depending on Compiler usage. I will contact the UPP Developers and ask if there is a better Solution. If there is, the Files will probably later removed again from this Repository.
+
 ### wxWidgets - C++ Toolkit
 Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>
 Version: Master Branch = Development Branch
@@ -308,7 +387,7 @@ perl --version
 
 to see which Version is installed on your Distribution.
 
-If Perl is not found, install the prebuilt Binaries provided by your Distribution. Check your Distribution specific Installer on how to do that.
+If Perl is not found, install the prebuilt Binaries provided by your Distribution. Read the Instructions for the Package Manager of your Distribution on how to do that.
 
 3. Python 3.x Programming Language
     1. Required as an Interpreter for all Projects using Python Scripts
@@ -320,7 +399,7 @@ python --version
 
 to see which Version is installed on your Distribution.
 
-If Python is not found, install the prebuilt Binaries provided by your Distribution. Check your Distribution specific Installer on how to do that.
+If Python is not found, install the prebuilt Binaries provided by your Distribution. Read the Instructions for the Package Manager of your Distribution on how to do that.
 
 ## WindowsScripts
 I also published my Windows Scripts Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism):
