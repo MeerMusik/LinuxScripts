@@ -55,7 +55,6 @@ if [ -z "$DEP" ]; then
     echo Automatic dependency installation has failed.
     echo You will have to install the required packages manually.
   fi
-  echo Please make sure that build dependencies are satisfied.
 else
   echo The following command should be used to install the required packages:
   echo

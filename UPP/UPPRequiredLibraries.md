@@ -18,6 +18,8 @@ I will keep this List updated if time permits. If in doubt, check the following 
 !!! ONLY THE MANJARO SECTION HAS BEEN PORTED AND TESTED YET !!!
 !!! YOU ALSO NEED TO ENABLE THE ARCH USER REPOSITORIES WHEN USING A ARCH BASED DISTRIBUTION !!!
 
+!!! THE DEBIAN PART IS PROPABLY INCOMPLETE! I AM NOT SURE IF XDOTOOL IS AVAILABLE AS A X86 VARIANT !!!
+
 1. [InstallRequired32BitLibs.sh](UPP/Extras/InstallRequired32BitLibs.sh) !! Not guaranteed to be up2date !!
 2. You can get the latest Version of the Install Script by downloading the latest Ultimate++ .tar.xz Archive for Linux: [UPP Downloads](https://www.ultimatepp.org/www$uppweb$download$en-us.html)
 
