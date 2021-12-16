@@ -25,7 +25,7 @@ cd $HOME/Dev/Builds/ICUx86/icu4c/source/
 ./configure --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=i686-pc-linux-gnu --enable-debug --disable-release --enable-shared --with-library-bits=32 --prefix=$HOME/Dev/Binaries/ICUx86Debug/
 make --jobs=$(nproc) V=1
 make --jobs=$(nproc) V=1 check
-echo Script paused for 10 Seconds to be able to read the Test Results! Please wait a moment...
+echo Script paused for 10 Seconds to be able to read the Build or Test Results! Please wait a Moment...
 sleep 10s
 if [ ! -d $HOME/Dev/Binaries/ ]; then mkdir $HOME/Dev/Binaries/
 fi
@@ -37,7 +37,7 @@ export CXXFLAGS='-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -fasynchronous-unwind
 ./configure --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=i686-pc-linux-gnu --disable-debug --enable-release --enable-shared --with-library-bits=32 --prefix=$HOME/Dev/Binaries/ICUx86Release/
 make --jobs=$(nproc) V=1
 make --jobs=$(nproc) V=1 check
-echo Script paused for 10 Seconds to be able to read the Test Results! Please wait a moment...
+echo Script paused for 10 Seconds to be able to read the Build or Test Results! Please wait a Moment...
 sleep 10s
 make --jobs=1 V=1 install
 rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/Builds/ICUx86/*.* $HOME/Dev/Builds/ICUx86/* $HOME/Dev/Builds/ICUx86/

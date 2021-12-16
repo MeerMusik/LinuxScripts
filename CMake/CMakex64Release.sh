@@ -23,8 +23,8 @@ cd $HOME/Dev/Builds/CMakex64Release/
 # Use this command if you do not have ninja and / or cmake installed: ./bootstrap --version --verbose --parallel=$(nproc) -- -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX=$HOME/Dev/Binaries/CMakex64Release/
 # Use this command if you do not have ninja and / or cmake installed: make --jobs=$(nproc) V=1
 cmake $HOME/Dev/GitRepos/CMake/ $HOME/Dev/Builds/CMakex64Release/ -G'Ninja' -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX=$HOME/Dev/Binaries/CMakex64Release/
-ninja --verbose
+ninja --verbose -j$(nproc) -l$(nproc)
 # Use this command if you do not have ninja and / or cmake installed: make --jobs=1 V=1 install
-ninja --verbose install
+ninja --verbose -j$(nproc) install
 rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/Builds/CMakex64Release/*.* $HOME/Dev/Builds/CMakex64Release/* $HOME/Dev/Builds/CMakex64Release/
 exit

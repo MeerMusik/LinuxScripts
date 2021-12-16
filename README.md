@@ -16,10 +16,10 @@ The Build Scripts will search for the Libraries in this Directory.
 
 The Majority of these Scripts were used in combination with the Qt Framework, to create the Qt based Version of my Tool. As I have now switched to Ultimate++, they are currently not needed. The other Scripts like for ICU and OpenSSL will or will not get used again.
 
-Please keep in mind that these Scripts will only be updated when I feel the need for it! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler.
+Please keep in mind that these Scripts will only get updated when I feel the need for it! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler.
 
 ATTENTION: As the Majority of these Scripts are currently unused, Bug Reports will probably stay open for many months. The best options to get something fixed currently are:
-1. Clone the Repo -> Fix the Bug -> Create a Merge Request ("Pull Request") OR
+1. Clone the Repo -> Fix the Bug -> Create a Pull Request OR
 2. Fork the Repo -> Fix the Bug -> Enjoy
 
 These Scripts will otherwise only get updated if I run into Issues myself.
@@ -42,7 +42,20 @@ You usually need to remove or modify some Compiler Flags for newer and older Ver
 
 Other Compiler Variants like Clang-GCC are untested and therefore not supported by me!
 
-All Scripts are heavily personalized and have a lot of Compiler Flags to fit my personal needs.
+Some Security = Hardening Flags forced whenever possible:
+1. Fortify Source
+2. Position-Independent-Code or Position-Independent-Executables
+3. Stack Protector
+4. Stack-Clash Protector
+5. Read-Only Relocation
+6. Immediate Binding
+7. Spectre and Meltdown Mitigation.
+    1. As I run a AMD System, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame the Compiler Vendors. And Intel. And AMD.
+8. No Executable Stack
+
+All Scripts are heavily personalized and have a lot of Compiler Flags to fit my personal needs. For Example, most Release builds come with minimum Debug Informations enabled with '-ggdb1'.
+
+Attention! Since December 2021: All Scripts are now using '-Wl,--hash-style=gnu'. Building and running the Libraries on Linux Distributions with a GLIBC Version, which do not support that "new" Hash Implementation will fail! In a quick Research = typing words into a Search Engine, I found some very old Threads, which indicate, that GLIBC Versions from 2006 and later should support this Hash. Take this Info with a big Container of Salt! Run your own tests to be on the safe side :)
 
 Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document, as I do not guarantee to keep them updated! If in doubt, look at the Scripts.
 
@@ -192,7 +205,7 @@ Build it:
 
 ### LLVM / CLANG- The LLVM Compiler Infrastructure
 Status: Currently not used<br>
-Version: Release/12.x Branch
+Version: Release/13.x Branch
 
 Building from Source is optional. I have only used Clang as a Parser for Qt Framework specific Parts. I have not yet built any Library with Clang directly.
 
@@ -200,8 +213,8 @@ LLDB has 'swig' as an additional Dependency. Make sure to install 'swig' or disa
 1. swig Website: http://www.swig.org/
 
 Infos:
-1. You should use the prebuilt Binaries provided by your Distribution
-2. If there are none: You can use the LLVM prebuilt Binaries from https://releases.llvm.org/
+1. If you do not have a specific use case to build a customized Compiler, you should use the prebuilt Binaries provided by your Distribution. It is much less hassle, you will save a lot if time and keep your frustation Level to a minimum.
+2. If there are no prebuilt Binaries for your Distribution: You can use the LLVM prebuilt Binaries from https://releases.llvm.org/
 3. General Documentation: https://llvm.org/docs/
 4. How to build Clang/LLVM: Basic starting Guide: https://clang.llvm.org/get_started.html
 
@@ -211,7 +224,9 @@ Disabled Functionality:
 Colored Output requires ncurses. As different Distributions deploy different Versions of ncurses, it often leads to linking errors. If you want colored output, enable that Flag and also install ncurses! Make sure to install the correct Version! I never used ncurses, therefore I can not tell you which Version you need!
 
 Broken Functionality:
-1. Tests. I do not need them right now. Wasted a lot of time trying to get 'ninja test' to work. The LLVM Documentation is a horrible mess for the most part. Should I ever need them, I will try to get it to work. Otherwise: Feel free to fix and send a Merge Request :)
+1. Tests. They will fail.
+    1. Since December 2021: The Scripts will build and run the unit tests by default now. Keep in Mind, that the Tests are NOT 100 Percent correctly set up yet! The LLVM / Clang Documentation is still a huge mess. Also Tests can fail but the Compiler will work fine anyway.
+    2. Feel free to overhaul the Scripts to build and run the Tests correctly. I have no desire and no need at the Moment (December 2021) to do this. Feel free to create a Pull Request on GitHub.
 
 Get the Source Code:
 1. Clone Git Repository to local Drive: [NewLLVMGit.sh](LLVM/NewLLVMGit.sh)
@@ -220,6 +235,18 @@ Get the Source Code:
 Build it:
 1. X86_64, Debug: [LLVMx64Debug.sh](LLVM/LLVMx64Debug.sh)
 2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
+
+Required Free Space during build time:
+1. Debug Build: Circa 108 Gigabyte
+    1. With Tests: Circa 1xx Gigabyte
+2. Release Build: Circa 20 Gigabyte
+    1. With Tests: Circa 36 Gigabyte
+
+Also, when building Tests, building LLVM and Clang will take around 8 - 10 Minutes longer on my PC.
+
+Required Free Space for Installation:
+1. Debug Build: Circa xx Gigabyte 
+2. Release Build: Circa 14 Gigabyte
 
 There are NO X86 (32-Bit) Scripts:
 1. I do not want to install 32-Bit Python from an unofficial Repository
