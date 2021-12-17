@@ -14,6 +14,6 @@ fi
 if [ -d $HOME/Dev/GitRepos/wxWidgets/ ]; then rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/GitRepos/wxWidgets/*.* $HOME/Dev/GitRepos/wxWidgets/* $HOME/Dev/GitRepos/wxWidgets/
 fi
 cd $HOME/Dev/GitRepos/
-git clone --recurse-submodule https://github.com/wxWidgets/wxWidgets.git --verbose --progress
+git clone --recurse-submodule https://github.com/wxWidgets/wxWidgets.git --recurse-submodules --verbose --progress
 echo DONE!
 exit
