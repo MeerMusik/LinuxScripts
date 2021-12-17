@@ -1,14 +1,22 @@
 # Prepared Compiler and Linker Flags
 
-This List contains Compiler and Linker Flags for different Archtitectures AKA X86 vs X86_64 as well as Debug vs Release and Dynamic vs Static.
+This List contains Compiler and Linker Flags for different Architectures AKA X86 vs X86_64 as well as Debug vs Release and Dynamic vs Static.
 
-If you apply those Flags to a new Library, make sure everything works. Even if a Library will get build and linked correctly, does not guarantee, that it will not for example crash during runtime.
+If you apply those Flags to a new Library, make sure everything works. Even if a Library will get build and linked correctly, does not guarantee, that it will not for example crash during runtime!
 
-Keep in Mind:
+Please keep in Mind:
 
-1. I always try to support the latest Versions and C / C++ Standards.
-2. I have added '-Wl,--hash-style=gnu' - this is meant to lead to shorted build and linkt times. It is unfortunately not compatible with Systems which using too old GLIC Versions. If your App does not run on very old systems because of this, set it to:
-    1. -Wl,--hash-style=both - this sets it to the Default Value, which writes the old slow sysv Sections and the newer GNU Sections.
+1. I always try to support the latest Framework, Libraries, Compiler Versions and C / C++ Standards
+2. I have added '-Wl,--hash-style=gnu' - this is meant to lead to shorter build and link times. It is unfortunately not compatible with Systems which are using too old GLIC Versions. If your App does not run on very old systems because of this, set it to:
+    1. -Wl,--hash-style=both - this sets it to the Default Value, which writes the old slow sysv Sections and the newer GNU Sections into the Header of the File
+
+This List was created for my convenience and comes without any guarantee whatsoever!
+
+These Flags are heavily personalized to fit my System and my use case and may or may not work on your Machine, with you Compiler or Compiler Version, Version of the used Libraries etc.!
+
+Where necessary, I added a Section called 'Hint' at the upper Part of the Build Scripts, which list in example Flags which are not compatible or not fully supported.
+
+And as usual: Feel free to test and give Feedback, create Pull Requests etc.
 
 ## License
 SPDX-License-Identifier: Unlicense OR CC0-1.0 <br>
@@ -19,8 +27,6 @@ Written in 2021 by Oliver Niebuhr, email: gitrepos@oliverniebuhr.de / Website: h
 To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty. <br>
 You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/> <br>
 CC0 1.0 Universal License Text End -
-
-This List is mainly provided for my convenience and comes without any guarantee whatsoever!
 
 ## 64-Bit Debug Dynamic
 -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -fasynchronous-unwind-tables -fcf-protection=branch -fexceptions -finput-charset=utf-8 -fno-lto -fno-omit-frame-pointer -fPIC -fstack-protector-all -fstack-clash-protection -ftrapv -frecord-gcc-switches -grecord-gcc-switches -m64 -mfunction-return=thunk -mindirect-branch=thunk -mindirect-branch-register -pthread -Og -ggdb3 -pie -pipe -std=c++20 -Wall -Walloc-zero -Wcast-align -Wclass-memaccess -Wconversion -Wdeprecated-declarations -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wextra -Wformat=2 -Wformat-nonliteral -Wformat-overflow=2 -Wformat-security -Wformat-truncation -Wimplicit-fallthrough -Wlogical-op -Wmisleading-indentation -Wmissing-declarations -Wnonnull -Wnon-virtual-dtor -Wnull-dereference -Wold-style-cast -Woverloaded-virtual -Wpedantic -Wpointer-arith -Wreorder -Wshadow -Wsign-conversion -Wstack-protector -Wstrict-overflow -Wtrampolines -Wunused -Wuseless-cast -Wvla -Wl,-Og -Wl,--allow-multiple-definition -Wl,--build-id=sha1 -Wl,--discard-locals -Wl,-fno-lto -Wl,-g -Wl,--hash-style=gnu -Wl,-melf_x86_64 -Wl,-z,defs -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack -Wl,-rpath=\$\$\$$ORIGIN/../lib
@@ -47,9 +53,9 @@ This List is mainly provided for my convenience and comes without any guarantee 
 -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -fasynchronous-unwind-tables -fcf-protection=branch -fdata-sections -fexceptions -ffunction-sections -finput-charset=utf-8 -fno-lto -fno-omit-frame-pointer -fPIE -fstack-protector-all -fstack-clash-protection -ftrapv -frecord-gcc-switches -grecord-gcc-switches -m32 -mfunction-return=thunk -mindirect-branch=thunk -mindirect-branch-register -pthread -O3 -ggdb1 -pie -pipe -std=c++20 -Wall -Walloc-zero -Wcast-align -Wclass-memaccess -Wconversion -Wdeprecated-declarations -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wextra -Wformat=2 -Wformat-nonliteral -Wformat-overflow=2 -Wformat-security -Wformat-truncation -Wimplicit-fallthrough -Wlogical-op -Wmisleading-indentation -Wmissing-declarations -Wnonnull -Wnon-virtual-dtor -Wnull-dereference -Wold-style-cast -Woverloaded-virtual -Wpedantic -Wpointer-arith -Wreorder -Wshadow -Wsign-conversion -Wstack-protector -Wstrict-overflow -Wtrampolines -Wunused -Wuseless-cast -Wvla -Wl,-O3 -Wl,--allow-multiple-definition -Wl,--build-id=sha1 -Wl,--discard-locals -Wl,-fno-lto -Wl,-g -Wl,--hash-style=gnu -Wl,--gc-sections -Wl,-melf_i386 -Wl,--pie -Wl,-z,defs -Wl,-z,defs -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack -Wl,-rpath=\$\$\$$ORIGIN/../lib
 
 ## Compiler and Linker Flags for Libraries which are only or additionally using CFLAGS
-I have removed all C++ only Flags. Replace them with the Warning Flags in the 'CFLAGS=' Section
+I have removed all C++ only Flags. Replace the below Flags with the Warning Flags in the 'CFLAGS=' Section of the Build Scripts.
 
-1. Set the correct C Standard: -std=c2x
+1. Set the C Standard the correct way: -std=c2x
     1. For OpenSSL 1.1.1 (and maybe 3.x.x - untested yet!): -std=gnu2x
 
-2. Warning Flags all in once: -std=c2x -Wall -Walloc-zero -Wcast-align -Wconversion -Wdeprecated-declarations -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wextra -Wformat=2 -Wformat-nonliteral -Wformat-overflow=2 -Wformat-security -Wformat-truncation -Wimplicit-fallthrough -Wlogical-op -Wmisleading-indentation -Wmissing-declarations -Wnonnull -Wnull-dereference -Wpedantic -Wpointer-arith -Wshadow -Wsign-conversion -Wstack-protector -Wstrict-overflow -Wtrampolines -Wunused -Wvla
+2. C Standard and Warning Flags all in once: -std=c2x -Wall -Walloc-zero -Wcast-align -Wconversion -Wdeprecated-declarations -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wextra -Wformat=2 -Wformat-nonliteral -Wformat-overflow=2 -Wformat-security -Wformat-truncation -Wimplicit-fallthrough -Wlogical-op -Wmisleading-indentation -Wmissing-declarations -Wnonnull -Wnull-dereference -Wpedantic -Wpointer-arith -Wshadow -Wsign-conversion -Wstack-protector -Wstrict-overflow -Wtrampolines -Wunused -Wvla

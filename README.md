@@ -213,10 +213,10 @@ LLDB has 'swig' as an additional Dependency. Make sure to install 'swig' or disa
 1. swig Website: http://www.swig.org/
 
 Infos:
-1. If you do not have a specific use case to build a customized Compiler, you should use the prebuilt Binaries provided by your Distribution. It is much less hassle, you will save a lot if time and keep your frustation Level to a minimum.
-2. If there are no prebuilt Binaries for your Distribution: You can use the LLVM prebuilt Binaries from https://releases.llvm.org/
+1. If you do not have a specific use case to build a customized Compiler, you should use the prebuilt Binaries provided by your Distribution. It is much less hassle, you will save a lot of time and keep your frustation Level to a minimum.
+2. If there are no prebuilt Binaries for your Distribution: Try your Luck at official LLVM Download Website: https://releases.llvm.org/
 3. General Documentation: https://llvm.org/docs/
-4. How to build Clang/LLVM: Basic starting Guide: https://clang.llvm.org/get_started.html
+4. How to build Clang / LLVM: Basic starting Guide: https://clang.llvm.org/get_started.html
 
 Disabled Functionality:
 1. Colored Output: -DLLVM_ENABLE_TERMINFO='OFF'
@@ -236,21 +236,29 @@ Build it:
 1. X86_64, Debug: [LLVMx64Debug.sh](LLVM/LLVMx64Debug.sh)
 2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
 
-Required Free Space during build time:
-1. Debug Build: Circa 108 Gigabyte
-    1. With Tests: Circa 1xx Gigabyte
-2. Release Build: Circa 20 Gigabyte
-    1. With Tests: Circa 36 Gigabyte
+WARNING! Make sure you have enough RAM!
+1. Debug Builds: On my System with 16 Cores and 32 Threads, I am running into Issues with 64 Gigabyte of RAM! I had to add a fixed Swapfile of 16 Gigabyte. Which is barely enough. Running KATE and Firefox with 50+ constantly pinned Tabs, reached 76 Gigabyte RAM usage.
+2. Release Builds: Even the Release Build with Debug Level 1, will eat 50 or more Gigabyte of RAM - depending on what else is running on your System. Max RAM usage reached so far: A little over 60 Gigabyte
 
-Also, when building Tests, building LLVM and Clang will take around 8 - 10 Minutes longer on my PC.
+Required Free Space during build time:
+1. Debug Build without Unit Tests: Circa 108 Gigabyte
+    1. With Unit Tests: Circa 206 Gigabyte
+2. Release Build without Unit Tests: Circa 20 Gigabyte
+    1. With Unit Tests: Circa 36 Gigabyte
 
 Required Free Space for Installation:
-1. Debug Build: Circa xx Gigabyte 
+1. Debug Build: Circa 74 Gigabyte 
 2. Release Build: Circa 14 Gigabyte
 
-There are NO X86 (32-Bit) Scripts:
+Build times: 16 Cores 32 Threads, 64 GB RAM:
+1. Debug Build: Circa 30 Minutes plus running Tests plus installing = circa 45 Minutes
+2. Release Build: Circa 20 Minute plus running tests plus installing = circa 30 Minutes
+
+No X86 = 32-Bit only Scripts:
 1. I do not want to install 32-Bit Python from an unofficial Repository
-2. I could build it from the AUR, but the Versions are usually outdated. Also Packages can and will break, if they do not keep getting updated. This is unavoidable
+2. I could build the old 'lib32-python' from the AUR, but the Version is usually outdated and the Package Script seems to have some Issues.
+    1. Also the Build and Config Script for Packages will break, if they do not keep getting updated. This is unavoidable
+3. The X86_64 Compiler is able to build Binaries for the X86 Architecture anyway
 
 ### Ninja - The Ninja Build System
 Status: Heavily recommended! I use it whenever possible. Not used with Ultimate++<br>
