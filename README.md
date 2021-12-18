@@ -16,13 +16,11 @@ The Build Scripts will search for the Libraries in this Directory.
 
 The Majority of these Scripts were used in combination with the Qt Framework, to create the Qt based Version of my Tool. As I have now switched to Ultimate++, they are currently not needed. The other Scripts like for ICU and OpenSSL will or will not get used again.
 
-Please keep in mind that these Scripts will only get updated when I feel the need for it! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler.
+Please keep in mind that these Scripts will only get updated if I run into Issues myself! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler.
 
 ATTENTION: As the Majority of these Scripts are currently unused, Bug Reports will probably stay open for many months. The best options to get something fixed currently are:
-1. Clone the Repo -> Fix the Bug -> Create a Pull Request OR
-2. Fork the Repo -> Fix the Bug -> Enjoy
-
-These Scripts will otherwise only get updated if I run into Issues myself.
+1. Clone the Repository -> Fix the Bug -> Create a Pull Request -> Wait for my Decision OR
+2. Fork the Repository -> Fix the Bug -> Enjoy a Error Free Script
 
 Additionally: All UNSUPPORTED Scripts, are in the UNSUPPORTED Directory! You can read about the UNSUPPORTED Scripts in this Document:
 1. [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
@@ -36,7 +34,7 @@ Other Linux Distributions are currently untested by me.
 
 Newer GNU GCC/G++ Versions should be compatible too.
 
-Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested was GCC 8.1.0 back in 2019.
+Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested some of the Libraries like ICU and OpenSSL with, was GCC 8.1.0 back in 2019.
 
 You usually need to remove or modify some Compiler Flags for newer and older Versions.
 
@@ -44,20 +42,20 @@ Other Compiler Variants like Clang-GCC are untested and therefore not supported 
 
 Some Security = Hardening Flags forced whenever possible:
 1. Fortify Source
-2. Position-Independent-Code or Position-Independent-Executables
+2. Position-Independent-Code or Position-Independent-Executable
 3. Stack Protector
 4. Stack-Clash Protector
 5. Read-Only Relocation
 6. Immediate Binding
-7. Spectre and Meltdown Mitigation.
-    1. As I run a AMD System, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame the Compiler Vendors. And Intel. And AMD.
-8. No Executable Stack
+7. No Executable Stack
+8. Spectre and Meltdown Mitigation
+    1. As I use a AMD System, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame the Compiler Vendors. And Intel. And AMD.
 
-All Scripts are heavily personalized and have a lot of Compiler Flags to fit my personal needs. For Example, most Release builds come with minimum Debug Informations enabled with '-ggdb1'.
+All Scripts are heavily personalized to fit my personal needs. For Example, most Release builds come with minimum Debug Informations enabled with '-ggdb1'.
 
 Attention! Since December 2021: All Scripts are now using '-Wl,--hash-style=gnu'. Building and running the Libraries on Linux Distributions with a GLIBC Version, which do not support that "new" Hash Implementation will fail! In a quick Research = typing words into a Search Engine, I found some very old Threads, which indicate, that GLIBC Versions from 2006 and later should support this Hash. Take this Info with a big Container of Salt! Run your own tests to be on the safe side :)
 
-Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document, as I do not guarantee to keep them updated! If in doubt, look at the Scripts.
+Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document, as I do not guarantee to keep them updated! If in doubt, take a look at the Scripts.
 
 ## LICENSE
 The Content in this Repository is Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism).
@@ -103,13 +101,16 @@ Send me a Message. I will try to reply within 96 hours. Sometimes sooner, someti
 5. Contact me on Twitter: https://twitter.com/MeerMusik
 6. Contact Form on my personal Website (German): https://oliverniebuhr.de/kontakt
 
-Remember that Tweets are always public! Everyone can read what you write! If you need to send Personal Infos, send me a Direct Message!
+Remember that Tweets are always public! Everyone can read what you write! If you need to send Personal Informations, send me a Direct Message!
 
 ## List of Scripts
 ### AKKomPolTool / Pirates-Little-Helper - (WIP NAME. PLACEHOLDER)
+Status: Delayed indefinitely<br>
+Version: Main Branch<br>
+
 The Links to the Files have been removed while the Tool will be rewritten from Scratch in another Framework.
 
-The old Source Code, based on the Qt Framework, will not be published: It is discontinued and in 'Recycle Mode'.
+The old Source Code, based on the Qt Framework, will not be published: Most of it has been deleted. Other Parts like Scripts will be recycled where possible.
 
 Info:
 1. My personal Website (German): https://oliverniebuhr.de
@@ -142,7 +143,7 @@ Build it:
 4. X86, Static, Debug and Release: [Boostx86Static.sh](Boost/Boostx86Static.sh)
 
 ### Botan - Crypto and TLS for Modern C++
-Status: Unused. Kept just in case.<br>
+Status: Unused. Kept in case it turned out to be a Alternative to OpenSSL.<br>
 Version: Master Branch
 
 Infos:
@@ -186,18 +187,18 @@ See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 
 ### ICU - International Components for Unicode
 Status: Currently unused. If it is still needed, has to be determined.<br>
-Version: maint/maint-69
+Version: maint/maint-70
 
 Infos:
 1. Documentation: http://site.icu-project.org/docs
-2. Download Source Archive or prebuilt Binaries directly: http://site.icu-project.org/download
+2. Download Source Archive or prebuilt Binaries directly: https://icu.unicode.org/download
 
 Get the Source Code:
 1. Clone Git Repository to local Drive: [NewICUGit.sh](ICU/NewICUGit.sh)
 2. Update local Git Repository: [UpdateICUGit.sh](ICU/UpdateICUGit.sh)
 
 You also need [Git Large File Storage Extension](https://git-lfs.github.com/)<br>
-Need help setting up Git LFS? [Follow the Section 'Detailed Instructions' -> 'Prerequisites: Git and Git LFS' at the ICU Project Site](http://site.ICU-project.org/repository)
+Need help setting up Git LFS? [Follow the Section 'Detailed Instructions' -> 'Prerequisites: Git and Git LFS' at the ICU Project Site](https://icu.unicode.org/repository)
 
 Build it:
 1. X86_64, Debug and Release: [ICUx64.sh](ICU/ICUx64.sh)
@@ -328,8 +329,8 @@ Additional Infos:
 /usr/include/glib-2.0/glib/gmacros.h:823:46: note: in definition of macro 'G_STATIC_ASSERT'
 823 | #define G_STATIC_ASSERT(expr) static_assert (expr, "Expression evaluates to false")
 
-1. Install the Lib32 Variant of GLIB2
-2. Make sure all GLIB2 Dependencies are installed as Lib32 Variants as well
+1. Install the Lib32-GLIB2
+2. Make sure all Lib32-GLIB2 Dependencies are installed as Lib32 Variants as well
 
 Additional Hints for building X86 Libraries on a X86_64 PC:
 Ultimate++ requires specific Libraries like GTK3 and its Dependencies. Make sure that you have all the Lib32 Variants of the required Libraries installed!
@@ -374,9 +375,9 @@ One File launches the x86_64 Version with no additional Environment Settings. Th
 
 1. LD_LIBRARY_PATH=/usr/lib32/ PKG_CONFIG_PATH=/usr/lib32/pkgconfig/
 
-Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username.
+Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username. After that, place them in '/home/[your username]/.local/share/applications/'.
 
-I am NOT providing the PNG File for the Icon: It will automatically copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
+I am NOT providing the PNG File for the Icon: It should automatically copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
 
 Ultimate++ .desktop Files:
 1. 64-Bit IDE - 32-Bit Paths: [TheIDE_32BitPaths.desktop](UPP/Extras/TheIDE_32BitPaths.desktop)
@@ -405,12 +406,19 @@ Build it:
 1. X86_64, Static, Debug and Release: [wxWidgetsx64.sh](wxWidgets/wxWidgetsx64.sh)
 2. X86, Static, Debug and Release: [wxWidgetsx86.sh](wxWidgets/wxWidgetsx86.sh)
 
+Attention:
+1. The X86 Script relies on Libraries which are partially only available through AUR
+    1. I have disabled wxSecretStore and wxMediaCtrl for that reason. If you want to use those, set the Boolean Value from "OFF" to "ON"
+2. For other Distributions, make sure you have Access to the Lib32 Variants of for example 'secretstore' and 'gstplayer-1.0.so'
+   1. X86_64 Distributions keep getting rid of more Lib32 Libraries over time. Therefore, the above List is based on the last time I tried to build wxWidgets with basic Functionality in December 2021
+
 ## Other Tools
 Hard Dependencies or recommended Libraries.
 
 1. NASM - Netwide Assembler. For OpenSSL. Optional but highly recommended
-    1. Download the latest prebuilt Binaries: https://www.nasm.us/pub/nasm/releasebuilds/
-    2. Version: Always the latest
+    1. Preferable way to get it: Install nasm through your trusty Package Manager
+    2. Alternatively: Download the latest prebuilt Binaries: https://www.nasm.us/pub/nasm/releasebuilds/
+    3. Version: Always the latest
 
 2. Perl Programming Language
     1. Required as an Interpreter for all Projects using Perl Scripts
