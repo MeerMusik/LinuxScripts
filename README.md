@@ -224,11 +224,6 @@ Disabled Functionality:
 
 Colored Output requires ncurses. As different Distributions deploy different Versions of ncurses, it often leads to linking errors. If you want colored output, enable that Flag and also install ncurses! Make sure to install the correct Version! I never used ncurses, therefore I can not tell you which Version you need!
 
-Broken Functionality:
-1. Tests. They will fail.
-    1. Since December 2021: The Scripts will build and run the unit tests by default now. Keep in Mind, that the Tests are NOT 100 Percent correctly set up yet! The LLVM / Clang Documentation is still a huge mess. Also Tests can fail but the Compiler will work fine anyway.
-    2. Feel free to overhaul the Scripts to build and run the Tests correctly. I have no desire and no need at the Moment (December 2021) to do this. Feel free to create a Pull Request on GitHub.
-
 Get the Source Code:
 1. Clone Git Repository to local Drive: [NewLLVMGit.sh](LLVM/NewLLVMGit.sh)
 2. Update local Git Repository: [UpdateLLVMGit.sh](LLVM/UpdateLLVMGit.sh)
@@ -238,22 +233,24 @@ Build it:
 2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
 
 WARNING! Make sure you have enough RAM!
-1. Debug Builds: On my System with 16 Cores and 32 Threads, I am running into Issues with 64 Gigabyte of RAM! I had to add a fixed Swapfile of 16 Gigabyte. Which is barely enough. Running KATE and Firefox with 50+ constantly pinned Tabs, reached 76 Gigabyte RAM usage.
-2. Release Builds: Even the Release Build with Debug Level 1, will eat 50 or more Gigabyte of RAM - depending on what else is running on your System. Max RAM usage reached so far: A little over 60 Gigabyte
+1. Debug Builds: With 16 Cores and 32 Threads, I am running into Issues with 64 Gigabyte of RAM! I had to add a 32 Gigabyte Swapfile. Which is barely enough. Running KATE and Firefox with 50+ constantly pinned Tabs, reached 76 Gigabyte of RAM usage.
+    1. One way to lower RAM usage, is to modify -DLLVM_PARALLEL_COMPILE_JOBS=$(nproc) and -DLLVM_PARALLEL_LINK_JOBS=8 in the Build Scripts.
+    2. The Number of Compile Jobs should usually be set to use all available Cores / Threads. As every individual Linking Process reserves as much RAM as it needs, lowering the Number of Link Jobs is the best Option to not to increase the total build time too much
+2. Release Builds: Even the Release Build with Debug Level 1, will eat minimum 50 Gigabyte of RAM or more - depending on what else is running on your System. Max RAM usage reached so far: A little over 60 Gigabyte
 
 Required Free Space during build time:
-1. Debug Build without Unit Tests: Circa 108 Gigabyte
-    1. With Unit Tests: Circa 206 Gigabyte
-2. Release Build without Unit Tests: Circa 20 Gigabyte
-    1. With Unit Tests: Circa 36 Gigabyte
+1. Debug Build with Unit Tests: Circa 204.0 Gigabyte
+2. Release Build with Unit Tests: Circa 37.6 Gigabyte
 
 Required Free Space for Installation:
-1. Debug Build: Circa 74 Gigabyte 
-2. Release Build: Circa 14 Gigabyte
+1. Debug Build: Circa 73.3 Gigabyte 
+2. Release Build: Circa 13.6 Gigabyte
 
-Build times: 16 Cores 32 Threads, 64 GB RAM:
-1. Debug Build: Circa 30 Minutes plus running Tests plus installing = circa 45 Minutes
-2. Release Build: Circa 20 Minute plus running tests plus installing = circa 30 Minutes
+Build time: 16 Cores 32 Threads, 64 GB RAM, 32 GB fixed SWAPFILE (SATA SSD):
+1. Debug Build: Circa 30 Minutes plus running Tests plus installing = circa 45 Minutes total
+    1. Ninja Parallel Link Jobs limited to 8 = Circa 40 Minutes everything combined
+2. Release Build: Circa 21 Minutes plus running tests plus installing = circa 25 Minutes total
+    1. Ninja Parallel Link Jobs limited to 8 = Circa xx Minutes total
 
 No X86 = 32-Bit only Scripts:
 1. I do not want to install 32-Bit Python from an unofficial Repository
