@@ -51,7 +51,7 @@ Some Security = Hardening Flags forced whenever possible:
 8. Spectre and Meltdown Mitigation
     1. As I use a AMD System, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame the Compiler Vendors. And Intel. And AMD.
 
-All Scripts are heavily personalized to fit my personal needs. For Example, most Release builds come with minimum Debug Informations enabled with '-ggdb1'.
+All Scripts are heavily personalized to fit my personal needs.
 
 Attention! Since December 2021: All Scripts are now using '-Wl,--hash-style=gnu'. Building and running the Libraries on Linux Distributions with a GLIBC Version, which do not support that "new" Hash Implementation will fail! In a quick Research = typing words into a Search Engine, I found some very old Threads, which indicate, that GLIBC Versions from 2006 and later should support this Hash. Take this Info with a big Container of Salt! Run your own tests to be on the safe side :)
 
@@ -251,6 +251,7 @@ Build time: 16 Cores 32 Threads, 64 GB RAM, 32 GB fixed SWAPFILE (SATA SSD):
     1. Ninja Parallel Link Jobs limited to 8 = Circa 40 Minutes everything combined
 2. Release Build: Circa 21 Minutes plus running tests plus installing = circa 25 Minutes total
     1. Ninja Parallel Link Jobs limited to 8 = Circa xx Minutes total
+    TODO: UPDATE ME: Release Build with 28 Link Jobs = xx Minutes = xx Minutes total
 
 No X86 = 32-Bit only Scripts:
 1. I do not want to install 32-Bit Python from an unofficial Repository
