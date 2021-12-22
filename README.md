@@ -25,37 +25,18 @@ ATTENTION: As the Majority of these Scripts are currently unused, Bug Reports wi
 Additionally: All UNSUPPORTED Scripts, are in the UNSUPPORTED Directory! You can read about the UNSUPPORTED Scripts in this Document:
 1. [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 
-## All Scripts are heavily customized. Read the dedicated Sections for Details
+## General Infos
 All Scripts were created and successfully tested under the following Linux and Compiler Versions:
 1. Manjaro (Arch Linux based), KDE 5, Stable Repository, x86_64
-2. GNU GCC/G++ Compiler, 10.2 or newer, x86, x86_64
+2. GNU GCC/G++ Compiler, 11.1 or newer, x86, x86_64
 
 Other Linux Distributions are currently untested by me.
 
-Newer GNU GCC/G++ Versions should be compatible too.
+Other Compiler Variants like Clang-GCC are untested and therefore not supported by me!
 
 Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested some of the Libraries like ICU and OpenSSL with, was GCC 8.1.0 back in 2019.
 
-You usually need to remove or modify some Compiler Flags for newer and older Versions.
-
-Other Compiler Variants like Clang-GCC are untested and therefore not supported by me!
-
-Some Security = Hardening Flags forced whenever possible:
-1. Fortify Source
-2. Position-Independent-Code or Position-Independent-Executable
-3. Stack Protector
-4. Stack-Clash Protector
-5. Read-Only Relocation
-6. Immediate Binding
-7. No Executable Stack
-8. Spectre and Meltdown Mitigation
-    1. As I use a AMD System, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame the Compiler Vendors. And Intel. And AMD.
-
-All Scripts are heavily personalized to fit my personal needs.
-
-Attention! Since December 2021: All Scripts are now using '-Wl,--hash-style=gnu'. Building and running the Libraries on Linux Distributions with a GLIBC Version, which do not support that "new" Hash Implementation will fail! In a quick Research = typing words into a Search Engine, I found some very old Threads, which indicate, that GLIBC Versions from 2006 and later should support this Hash. Take this Info with a big Container of Salt! Run your own tests to be on the safe side :)
-
-Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document, as I do not guarantee to keep them updated! If in doubt, take a look at the Scripts.
+You usually need to remove or modify some Compiler Flags for newer and older Compiler Versions.
 
 ## LICENSE
 The Content in this Repository is Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism).
@@ -104,6 +85,28 @@ Send me a Message. I will try to reply within 96 hours. Sometimes sooner, someti
 Remember that Tweets are always public! Everyone can read what you write! If you need to send Personal Informations, send me a Direct Message!
 
 ## List of Scripts
+Some Security = Hardening Flags forced whenever possible:
+1. Fortify Source
+2. Position-Independent-Code or Position-Independent-Executable
+3. Stack Protector
+4. Stack-Clash Protector
+5. Read-Only Relocation
+6. Immediate Binding
+7. No Executable Stack
+8. Spectre and Meltdown Mitigation
+    1. As I use a AMD System, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame the Compiler Vendors. And Intel. And AMD.
+
+All Scripts are now using '-Wl,--hash-style=gnu'. Building and running the Libraries on Linux Distributions with a GLIBC Version, which do not support that "new" Hash Implementation will fail! In a quick Research = typing words into a Search Engine, I found some very old Threads, which indicate, that GLIBC Versions from 2006 and later should support this Hash. Take this Info with a big Container of Salt! Run your own tests to be on the safe side :)
+
+Do not rely on Versions mentioned in this Document, as I often forget to update them. If in doubt, take a look at the Scripts.
+
+Static Builds: For Compatibility Reasons, Static Builds are the usual weird Linux Mix:
+
+1. Executables are: ELF 32 / 64 -bit LSB pie executables, dynamically linked
+2. Static Libraries are normal Static Libraries
+
+Should Linux reach Maturity in my Lifetime, I will turn Static Builds into real Static Builds.
+
 ### AKKomPolTool / Pirates-Little-Helper - (WIP NAME. PLACEHOLDER)
 Status: Delayed indefinitely<br>
 Version: Main Branch<br>
@@ -182,9 +185,6 @@ Get the Source Code:
 Build it:
 1. X86_64, Dynamic, Release: [CMakex64Release.sh](CMake/CMakex64Release.sh)
 
-### GammaRay - Introspection Tool for the Qt Framework
-See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
-
 ### ICU - International Components for Unicode
 Status: Currently unused. If it is still needed, has to be determined.<br>
 Version: maint/maint-70
@@ -233,25 +233,24 @@ Build it:
 2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
 
 WARNING! Make sure you have enough RAM!
-1. Debug Builds: With 16 Cores and 32 Threads, I am running into Issues with 64 Gigabyte of RAM! I had to add a 32 Gigabyte Swapfile. Which is barely enough. Running KATE and Firefox with 50+ constantly pinned Tabs, reached 76 Gigabyte of RAM usage.
-    1. One way to lower RAM usage, is to modify -DLLVM_PARALLEL_COMPILE_JOBS=$(nproc) and -DLLVM_PARALLEL_LINK_JOBS=8 in the Build Scripts.
+1. Debug Build: With 16 Cores and 32 Threads, I am running into Issues with 64 Gigabyte of RAM! I had to add a 32 Gigabyte Swapfile. Which is barely enough. Running KATE and Firefox with 50+ constantly pinned Tabs, reached 96 Gigabyte of RAM + Swapfile usage.
+    1. One way to lower RAM usage, is to modify -DLLVM_PARALLEL_COMPILE_JOBS=$(nproc) and -DLLVM_PARALLEL_LINK_JOBS=$(nproc) in the Build Scripts.
     2. The Number of Compile Jobs should usually be set to use all available Cores / Threads. As every individual Linking Process reserves as much RAM as it needs, lowering the Number of Link Jobs is the best Option to not to increase the total build time too much
-2. Release Builds: Even the Release Build with Debug Level 1, will eat minimum 50 Gigabyte of RAM or more - depending on what else is running on your System. Max RAM usage reached so far: A little over 60 Gigabyte
+2. Release Build: Even the Release Build will eat minimum 50 Gigabyte of RAM or more - depending on what else is running on your System. Max RAM usage reached so far: A little over 60 Gigabyte
 
 Required Free Space during build time:
-1. Debug Build with Unit Tests: Circa 204.0 Gigabyte
-2. Release Build with Unit Tests: Circa 37.6 Gigabyte
+1. Debug Build with Unit Tests: Circa 204.0 Gigabyte TODO: UPDATE ME!!
+2. Release Build with Unit Tests: Circa 9.1 Gigabyte
 
 Required Free Space for Installation:
-1. Debug Build: Circa 73.3 Gigabyte 
-2. Release Build: Circa 13.6 Gigabyte
+1. Debug Build: Circa 73.3 Gigabyte TODO: UPDATE ME!!
+2. Release Build: Circa 3.5 Gigabyte
 
 Build time: 16 Cores 32 Threads, 64 GB RAM, 32 GB fixed SWAPFILE (SATA SSD):
-1. Debug Build: Circa 30 Minutes plus running Tests plus installing = circa 45 Minutes total
+1. Debug Build: Circa xx Minutes plus running Unit Tests plus installing = circa xx Minutes total
+    TODO: UPDATE ME: Debug Build with xx Link Jobs = xx Minutes = xx Minutes total
     1. Ninja Parallel Link Jobs limited to 8 = Circa 40 Minutes everything combined
-2. Release Build: Circa 21 Minutes plus running tests plus installing = circa 25 Minutes total
-    1. Ninja Parallel Link Jobs limited to 8 = Circa xx Minutes total
-    TODO: UPDATE ME: Release Build with 28 Link Jobs = xx Minutes = xx Minutes total
+2. Release Build: Circa 21 Minutes plus running Unit Tests plus installing = circa 25 Minutes total
 
 No X86 = 32-Bit only Scripts:
 1. I do not want to install 32-Bit Python from an unofficial Repository
@@ -293,20 +292,10 @@ Get the Source Code:
 2. Update local Git Repository: [UpdateOpenSSLGit.sh](OpenSSL/UpdateOpenSSLGit.sh)
 
 Build it:
-1. X86_64, Dynamic, Debug: [OpenSSLx64Debug.sh](OpenSSL/OpenSSLx64Debug.sh)
-2. X86_64, Static, Debug: [OpenSSLx64DebugStatic.sh](OpenSSL/OpenSSLx64DebugStatic.sh)
-3. X86_64, Dynamic, Release: [OpenSSLx64Release.sh](OpenSSL/OpenSSLx64Release.sh)
-4. X86_64, Static, Release: [OpenSSLx64ReleaseStatic.sh](OpenSSL/OpenSSLx64ReleaseStatic.sh)
-5. X86, Dynamic, Debug: [OpenSSLx86Debug.sh](OpenSSL/OpenSSLx86Debug.sh)
-6. X86, Static, Debug: [OpenSSLx86DebugStatic.sh](OpenSSL/OpenSSLx86DebugStatic.sh)
-7. X86, Dynamic, Release: [OpenSSLx86Release.sh](OpenSSL/OpenSSLx86Release.sh)
-8. X86, Release, Static: [OpenSSLx86ReleaseStatic.sh](OpenSSL/OpenSSLx86ReleaseStatic.sh)
-
-### Qt Framework - Cross-Platform Application Development Framework
-See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
-
-### QtIFW - Qt Installer Framework
-See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
+1. X86_64, Dynamic, Debug and Release: [OpenSSLx64.sh](OpenSSL/OpenSSLx64.sh)
+2. X86_64, Static, Debug and Release: [OpenSSLx64Static.sh](OpenSSL/OpenSSLx64Static.sh)
+3. X86, Dynamic, Debug and Release: [OpenSSLx86.sh](OpenSSL/OpenSSLx86.sh)
+4. X86, Static, Debug and Release: [OpenSSLx86Static.sh](OpenSSL/OpenSSLx86Static.sh)
 
 ### Ultimate++ - A C++ Cross-Platform Rapid Application Development Framework
 Status: Currently the replacement for the Qt Framework<br>
@@ -385,7 +374,7 @@ Alternatively: Use Shell Shell Scripts:
 1. 64-Bit IDE - 32-Bit Paths: [StartIDE32BitPaths.sh](UPP/Extras/StartIDE32BitPaths.sh)
 2. 64-Bit IDE - Default Paths: [StartIDEDefaultPaths.sh](UPP/Extras/StartIDEDefaultPaths.sh)
 
-I have not yet found a Solution to set up additional Environment Paths depending on Compiler usage. I will contact the UPP Developers and ask if there is a better Solution. If there is, the Files will probably later removed again from this Repository.
+I have not yet found a Solution to set up additional Environment Paths depending on Compiler usage. If there is a better Solution long-term, the Files will probably later removed from this Repository.
 
 ### wxWidgets - C++ Toolkit
 Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>
@@ -408,7 +397,7 @@ Attention:
 1. The X86 Script relies on Libraries which are partially only available through AUR
     1. I have disabled wxSecretStore and wxMediaCtrl for that reason. If you want to use those, set the Boolean Value from "OFF" to "ON"
 2. For other Distributions, make sure you have Access to the Lib32 Variants of for example 'secretstore' and 'gstplayer-1.0.so'
-   1. X86_64 Distributions keep getting rid of more Lib32 Libraries over time. Therefore, the above List is based on the last time I tried to build wxWidgets with basic Functionality in December 2021
+   1. X86_64 Distributions will remove more Lib32 Libraries over time. Therefore, the above List is based on the last time I tried to build wxWidgets with basic Functionality in December 2021
 
 ## Other Tools
 Hard Dependencies or recommended Libraries.
