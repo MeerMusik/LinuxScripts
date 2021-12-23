@@ -10,4 +10,5 @@
 cd $HOME/Dev/GitRepos/OpenSSL/
 #git pull origin master --verbose
 git pull --verbose
+echo DONE!
 exit

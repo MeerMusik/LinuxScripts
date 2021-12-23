@@ -39,4 +39,5 @@ if [ ! -d $HOME/Dev/Binaries/ ]; then mkdir $HOME/Dev/Binaries/
 fi
 cp --force --verbose --recursive $HOME/Dev/Builds/UPPx86/ $HOME/Dev/Binaries/
 rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/Builds/UPPx86/*.* $HOME/Dev/Builds/UPPx86/* $HOME/Dev/Builds/UPPx86/
+echo DONE!
 exit

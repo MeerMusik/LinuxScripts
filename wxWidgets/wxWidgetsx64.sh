@@ -7,7 +7,7 @@
 # To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
 # You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>
 # - CC0 1.0 Universal License Text End -
-# Hint: 1: -DwxUSE_DEBUG_NEW_ALWAYS=1 lead to build Errors. Not sure if this is broken on Linux in general or if other or additional Compiler Flags are necessary.
+# WARNING: 1: -DwxUSE_DEBUG_NEW_ALWAYS=1 lead to build Errors. Not sure if this is broken on Linux in general or if other or additional Compiler Flags are necessary.
 if [ ! -d $HOME/Dev/ ]; then mkdir $HOME/Dev/
 fi
 if [ ! -d $HOME/Dev/Builds/ ]; then mkdir $HOME/Dev/Builds/

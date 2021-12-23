@@ -15,4 +15,5 @@ if [ -d $HOME/Dev/GitRepos/botan/ ]; then rm --interactive=never --dir --recursi
 fi
 cd $HOME/Dev/GitRepos/
 git clone https://github.com/randombit/botan.git --verbose --progress
+echo DONE!
 exit

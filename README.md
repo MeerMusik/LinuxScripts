@@ -14,13 +14,11 @@ All Scripts are written to compliment each other. Example: Locally cloned Reposi
 
 The Build Scripts will search for the Libraries in this Directory.
 
-The Majority of these Scripts were used in combination with the Qt Framework, to create the Qt based Version of my Tool. As I have now switched to Ultimate++, they are currently not needed. The other Scripts like for ICU and OpenSSL will or will not get used again.
+Please keep in mind that these Scripts will only get updated if I run into Issues myself! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler!
 
-Please keep in mind that these Scripts will only get updated if I run into Issues myself! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler.
-
-ATTENTION: As the Majority of these Scripts are currently unused, Bug Reports will probably stay open for many months. The best options to get something fixed currently are:
+As the Majority of these Scripts are currently unused, Bug Reports will probably stay open for many months. The best options to get something fixed currently are:
 1. Clone the Repository -> Fix the Bug -> Create a Pull Request -> Wait for my Decision OR
-2. Fork the Repository -> Fix the Bug -> Enjoy a Error Free Script
+2. Fork the Repository -> Fix the Bug -> Enjoy the Error Free Script
 
 Additionally: All UNSUPPORTED Scripts, are in the UNSUPPORTED Directory! You can read about the UNSUPPORTED Scripts in this Document:
 1. [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
@@ -34,9 +32,9 @@ Other Linux Distributions are currently untested by me.
 
 Other Compiler Variants like Clang-GCC are untested and therefore not supported by me!
 
-Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested some of the Libraries like ICU and OpenSSL with, was GCC 8.1.0 back in 2019.
+Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested some of the older Versions of Libraries like ICU and OpenSSL with, was GCC 8.1.0 back in 2019.
 
-You usually need to remove or modify some Compiler Flags for newer and older Compiler Versions.
+You usually need to remove or modify some Compiler Flags for newer and older Compiler and Linker Versions.
 
 ## LICENSE
 The Content in this Repository is Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism).
@@ -82,9 +80,11 @@ Send me a Message. I will try to reply within 96 hours. Sometimes sooner, someti
 5. Contact me on Twitter: https://twitter.com/MeerMusik
 6. Contact Form on my personal Website (German): https://oliverniebuhr.de/kontakt
 
-Remember that Tweets are always public! Everyone can read what you write! If you need to send Personal Informations, send me a Direct Message!
+REMEMBER THAT TWEETS ARE ALWAYS PUBLIC! EVERYONE CAN READ WHAT YOU WRITE! IF YOU NEED TO SEND PERSONAL INFORMATIONS, SEND ME A DIRECT MESSAGE!
 
 ## List of Scripts
+Where necessary, I added a Section called 'WARNING:' at the upper Part of the Build Scripts, which list in example Flags which are not compatible or not fully supported. It also contains other Hints about removed or disabled Features where necessary.
+
 Some Security = Hardening Flags forced whenever possible:
 1. Fortify Source
 2. Position-Independent-Code or Position-Independent-Executable
@@ -94,9 +94,15 @@ Some Security = Hardening Flags forced whenever possible:
 6. Immediate Binding
 7. No Executable Stack
 8. Spectre and Meltdown Mitigation
-    1. As I use a AMD System, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame the Compiler Vendors. And Intel. And AMD.
+    1. As I use AMD, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame Intel. And AMD.
 
-All Scripts are now using '-Wl,--hash-style=gnu'. Building and running the Libraries on Linux Distributions with a GLIBC Version, which do not support that "new" Hash Implementation will fail! In a quick Research = typing words into a Search Engine, I found some very old Threads, which indicate, that GLIBC Versions from 2006 and later should support this Hash. Take this Info with a big Container of Salt! Run your own tests to be on the safe side :)
+Hash-Style=GNU is set by all Scripts:
+1. I have added '-Wl,--hash-style=gnu' - this leads to shorter build and link times. If your App or Library does not run on Linux Versions using a too old Binutils Version, set the Value to:
+    1. -Wl,--hash-style=both - this is the Default Value, which will write the old slow SYSV Sections and the newer GNU Sections into the Header of the File. Alternatively set it to write only the old Value: -Wl,--hash-style=sysv
+    2. It seems this was introduced in Binutils 2.17.50.0.2 Beta. It became usable after some Bugs were fixed. Probably any Version from Binutils 2.17.50.0.6 Beta and later should work. Take this with a huge Container of Salt! Do your own testing to be on the relatively safe side!
+    3. I guess anything released beginning from January 2007 should be safe
+    4. You also need the correct GLIBC Version. Probably at least Version 2.5 but I have not researched this Topic. You are on your own with this!
+    5. Link to the [Binutils Changelog on the spinics.net Mailing List](https://www.spinics.net/lists/linux-gcc/msg00007.html)
 
 Do not rely on Versions mentioned in this Document, as I often forget to update them. If in doubt, take a look at the Scripts.
 
@@ -107,9 +113,11 @@ Static Builds: For Compatibility Reasons, Static Builds are the usual weird Linu
 
 Should Linux reach Maturity in my Lifetime, I will turn Static Builds into real Static Builds.
 
+And as usual: Feel free to test and give Feedback, create Pull Requests etc.
+
 ### AKKomPolTool / Pirates-Little-Helper - (WIP NAME. PLACEHOLDER)
-Status: Delayed indefinitely<br>
-Version: Main Branch<br>
+Status: Delayed indefinitely <br>
+Version: Main Branch <br>
 
 The Links to the Files have been removed while the Tool will be rewritten from Scratch in another Framework.
 
@@ -128,7 +136,7 @@ Build it: The real Build Scripts will be added when they are ready...
 2. [I AM AN EMPTY PLACEHOLDER! IGNORE ME!](I AM AN EMPTY PLACEHOLDER! IGNORE ME!)
 
 ### Boost - C++ Libraries
-Status: Currently not used<br>
+Status: Currently not used <br>
 Version: Master Branch
 
 Infos:
@@ -146,7 +154,7 @@ Build it:
 4. X86, Static, Debug and Release: [Boostx86Static.sh](Boost/Boostx86Static.sh)
 
 ### Botan - Crypto and TLS for Modern C++
-Status: Unused. Kept in case it turned out to be a Alternative to OpenSSL.<br>
+Status: Unused. Kept in case it turned out to be a Alternative to OpenSSL. <br>
 Version: Master Branch
 
 Infos:
@@ -163,49 +171,8 @@ Build it:
 3. X86, Dynamic, Debug and Release: [Botanx86.sh](Botan/Botanx86.sh)
 4. X86, Static, Debug and Release: [Botanx86Static.sh](Botan/Botanx86Static.sh)
 
-### CMake - Build Management Tool. Used to build GammaRay, Qt 6.x and other
-Status: Used when a Tool or Library supports it or has it set as a fixed Dependency.<br>
-Version: Master Branch
-
-I Build only from Source, when I need to test specific fixes or a new Feature.
-
-Attention: By Default, You need an existing CMake and Ninja Installation to build CMake from Source! You can uncomment the Lines in the Script to use 'Make'. Do not forget to comment the CMake specific Parts - otherwise you will break the Scripts :)
-
-I usually use the latest prebuilt x86_64 Binaries (ZIP Archive) from https://cmake.org/download/<br>
-If you are unsure: Download the ZIP Archive: No hassle with Installation and Uninstallation. Also very simple to overwrite all the Files with a newer Version that way
-
-Infos:
-1. Official Documentation: https://cmake.org/cmake/help/latest/
-2. Community Wiki: https://gitlab.kitware.com/cmake/community/-/wikis/home
-
-Get the Source Code:
-1. Clone Git Repository to local Drive: [NewCMakeGit.sh](CMake/NewCMakeGit.sh)
-2. Update local Git Repository: [UpdateCMakeGit.sh](CMake/UpdateCMakeGit.sh)
-
-Build it:
-1. X86_64, Dynamic, Release: [CMakex64Release.sh](CMake/CMakex64Release.sh)
-
-### ICU - International Components for Unicode
-Status: Currently unused. If it is still needed, has to be determined.<br>
-Version: maint/maint-70
-
-Infos:
-1. Documentation: http://site.icu-project.org/docs
-2. Download Source Archive or prebuilt Binaries directly: https://icu.unicode.org/download
-
-Get the Source Code:
-1. Clone Git Repository to local Drive: [NewICUGit.sh](ICU/NewICUGit.sh)
-2. Update local Git Repository: [UpdateICUGit.sh](ICU/UpdateICUGit.sh)
-
-You also need [Git Large File Storage Extension](https://git-lfs.github.com/)<br>
-Need help setting up Git LFS? [Follow the Section 'Detailed Instructions' -> 'Prerequisites: Git and Git LFS' at the ICU Project Site](https://icu.unicode.org/repository)
-
-Build it:
-1. X86_64, Debug and Release: [ICUx64.sh](ICU/ICUx64.sh)
-2. X86, Debug and Release: [ICUx86.sh](ICU/ICUx86.sh)
-
-### LLVM / CLANG- The LLVM Compiler Infrastructure
-Status: Currently not used<br>
+### CLANG / LLVM - The LLVM Compiler Infrastructure
+Status: Currently not used <br>
 Version: Release/13.x Branch
 
 Building from Source is optional. I have only used Clang as a Parser for Qt Framework specific Parts. I have not yet built any Library with Clang directly.
@@ -222,7 +189,7 @@ Infos:
 Disabled Functionality:
 1. Colored Output: -DLLVM_ENABLE_TERMINFO='OFF'
 
-Colored Output requires ncurses. As different Distributions deploy different Versions of ncurses, it often leads to linking errors. If you want colored output, enable that Flag and also install ncurses! Make sure to install the correct Version! I never used ncurses, therefore I can not tell you which Version you need!
+Colored Output requires ncurses. As different Distributions deploy different Versions of ncurses, it often leads to linking errors. If you want colored output, enable that Flag and also install ncurses! Make sure to install the correct Version! I have never used ncurses, therefore I can not tell you which Version you need!
 
 Get the Source Code:
 1. Clone Git Repository to local Drive: [NewLLVMGit.sh](LLVM/NewLLVMGit.sh)
@@ -232,24 +199,16 @@ Build it:
 1. X86_64, Debug: [LLVMx64Debug.sh](LLVM/LLVMx64Debug.sh)
 2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
 
-WARNING! Make sure you have enough RAM!
-1. Debug Build: With 16 Cores and 32 Threads, I am running into Issues with 64 Gigabyte of RAM! I had to add a 32 Gigabyte Swapfile. Which is barely enough. Running KATE and Firefox with 50+ constantly pinned Tabs, reached 96 Gigabyte of RAM + Swapfile usage.
-    1. One way to lower RAM usage, is to modify -DLLVM_PARALLEL_COMPILE_JOBS=$(nproc) and -DLLVM_PARALLEL_LINK_JOBS=$(nproc) in the Build Scripts.
-    2. The Number of Compile Jobs should usually be set to use all available Cores / Threads. As every individual Linking Process reserves as much RAM as it needs, lowering the Number of Link Jobs is the best Option to not to increase the total build time too much
-2. Release Build: Even the Release Build will eat minimum 50 Gigabyte of RAM or more - depending on what else is running on your System. Max RAM usage reached so far: A little over 60 Gigabyte
-
 Required Free Space during build time:
-1. Debug Build with Unit Tests: Circa 204.0 Gigabyte TODO: UPDATE ME!!
+1. Debug Build with Unit Tests: Circa 204.0 Gigabyte
 2. Release Build with Unit Tests: Circa 9.1 Gigabyte
 
 Required Free Space for Installation:
-1. Debug Build: Circa 73.3 Gigabyte TODO: UPDATE ME!!
+1. Debug Build: Circa 73.3 Gigabyte
 2. Release Build: Circa 3.5 Gigabyte
 
 Build time: 16 Cores 32 Threads, 64 GB RAM, 32 GB fixed SWAPFILE (SATA SSD):
-1. Debug Build: Circa xx Minutes plus running Unit Tests plus installing = circa xx Minutes total
-    TODO: UPDATE ME: Debug Build with xx Link Jobs = xx Minutes = xx Minutes total
-    1. Ninja Parallel Link Jobs limited to 8 = Circa 40 Minutes everything combined
+1. Debug Build: Limited to 16 Parallel Link Jobs = Circa 34 Minutes plus running Unit Tests plus installing = Circa 41 Minutes total
 2. Release Build: Circa 21 Minutes plus running Unit Tests plus installing = circa 25 Minutes total
 
 No X86 = 32-Bit only Scripts:
@@ -258,8 +217,48 @@ No X86 = 32-Bit only Scripts:
     1. Also the Build and Config Script for Packages will break, if they do not keep getting updated. This is unavoidable
 3. The X86_64 Compiler is able to build Binaries for the X86 Architecture anyway
 
+### CMake - Build Management Tool. Used to build GammaRay, Qt 6.x and other
+Status: Used when a Tool or Library supports it or has it set as a fixed Dependency. <br>
+Version: Master Branch
+
+I usually use the latest CMake Version provided by my Linux Distribution.
+
+I Build only from Source, when I need to test specific fixes or a new Feature.
+
+Attention: By Default, You need an existing CMake and Ninja Installation to build CMake from Source! You can uncomment the Lines in the Script to use 'Make'. Do not forget to comment the CMake specific Parts - otherwise you will break the Scripts :)
+
+Infos:
+1. Official Documentation: https://cmake.org/cmake/help/latest/
+2. Community Wiki: https://gitlab.kitware.com/cmake/community/-/wikis/home
+
+Get the Source Code:
+1. Clone Git Repository to local Drive: [NewCMakeGit.sh](CMake/NewCMakeGit.sh)
+2. Update local Git Repository: [UpdateCMakeGit.sh](CMake/UpdateCMakeGit.sh)
+
+Build it:
+1. X86_64, Dynamic, Release: [CMakex64Release.sh](CMake/CMakex64Release.sh)
+
+### ICU - International Components for Unicode
+Status: Currently unused. If it is still needed, has to be determined. <br>
+Version: maint/maint-70
+
+Infos:
+1. Documentation: http://site.icu-project.org/docs
+2. Download Source Archive or prebuilt Binaries directly: https://icu.unicode.org/download
+
+Get the Source Code:
+1. Clone Git Repository to local Drive: [NewICUGit.sh](ICU/NewICUGit.sh)
+2. Update local Git Repository: [UpdateICUGit.sh](ICU/UpdateICUGit.sh)
+
+You also need [Git Large File Storage Extension](https://git-lfs.github.com/) <br>
+Need help setting up Git LFS? [Follow the Section 'Detailed Instructions' -> 'Prerequisites: Git and Git LFS' at the ICU Project Site](https://icu.unicode.org/repository)
+
+Build it:
+1. X86_64, Debug and Release: [ICUx64.sh](ICU/ICUx64.sh)
+2. X86, Debug and Release: [ICUx86.sh](ICU/ICUx86.sh)
+
 ### Ninja - The Ninja Build System
-Status: Heavily recommended! I use it whenever possible. Not used with Ultimate++<br>
+Status: Heavily recommended! I use it whenever possible. Not used with Ultimate++ <br>
 Version: Master Branch
 
 Infos:
@@ -276,7 +275,7 @@ Build it:
 Attention: You need Python for the Bootstrapping Script!
 
 ### OpenSSL - Cryptography and SSL/TLS Toolkit
-Status: Currently unused<br>
+Status: Currently unused <br>
 Version: 1.1.1 Branch
 
 Additional Infos:
@@ -298,7 +297,7 @@ Build it:
 4. X86, Static, Debug and Release: [OpenSSLx86Static.sh](OpenSSL/OpenSSLx86Static.sh)
 
 ### Ultimate++ - A C++ Cross-Platform Rapid Application Development Framework
-Status: Currently the replacement for the Qt Framework<br>
+Status: Currently the replacement for the Qt Framework <br>
 Version: Master Branch
 
 Additional Infos:
@@ -364,7 +363,7 @@ One File launches the x86_64 Version with no additional Environment Settings. Th
 
 Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username. After that, place them in '/home/[your username]/.local/share/applications/'.
 
-I am NOT providing the PNG File for the Icon: It should automatically copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
+I am NOT providing the PNG File for the Icon: It should automatically get copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
 
 Ultimate++ .desktop Files:
 1. 64-Bit IDE - 32-Bit Paths: [TheIDE_32BitPaths.desktop](UPP/Extras/TheIDE_32BitPaths.desktop)
@@ -377,7 +376,7 @@ Alternatively: Use Shell Shell Scripts:
 I have not yet found a Solution to set up additional Environment Paths depending on Compiler usage. If there is a better Solution long-term, the Files will probably later removed from this Repository.
 
 ### wxWidgets - C++ Toolkit
-Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>
+Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead <br>
 Version: Master Branch = Development Branch
 
 Infos:

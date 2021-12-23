@@ -6,16 +6,19 @@ If you apply those Flags to another Library or Build Script etc., make sure ever
 
 Please keep in Mind:
 
-1. I always try to support the latest Framework, Libraries, Compiler Versions and C / C++ Standards
-2. I have added '-Wl,--hash-style=gnu' - this is meant to lead to shorter build and link times. It is unfortunately not compatible with Systems which are using too old GLIC Versions. If your App does not run on very old systems because of this, set it to:
-    1. -Wl,--hash-style=both - this sets it to the Default Value, which writes the old slow sysv Sections and the newer GNU Sections into the Header of the File
-    2. A quick use of a Search Engine resulted in old Forum Threads that GLIBC Versions from 2006 or newer are supposedly compatible. Take this with a huge Container of Salt and do your own testing to be on the relatively safe side!
+Hash-Style=GNU is set by all Scripts:
+1. I have added '-Wl,--hash-style=gnu' - this leads to shorter build and link times. If your App or Library does not run on Linux Versions using a too old Binutils Version, set the Value to:
+    1. -Wl,--hash-style=both - this is the Default Value, which will write the old slow SYSV Sections and the newer GNU Sections into the Header of the File. Alternatively set it to write only the old Value: -Wl,--hash-style=sysv
+    2. It seems this was introduced in Binutils 2.17.50.0.2 Beta. It became usable after some Bugs were fixed. Probably any Version from Binutils 2.17.50.0.6 Beta and later should work. Take this with a huge Container of Salt! Do your own testing to be on the relatively safe side!
+    3. I guess anything released beginning from January 2007 should be safe
+    4. You also need the correct GLIBC Version. Probably at least Version 2.5 but I have not researched this Topic. You are on your own with this!
+    5. Link to the [Binutils Changelog on the spinics.net Mailing List](https://www.spinics.net/lists/linux-gcc/msg00007.html)
 
 This List was created for my convenience and comes without any guarantee whatsoever!
 
 These Flags are heavily personalized to fit my System and my use case and may or may not work on your Machine, with your Compiler or Compiler Version, Version of the used Libraries etc.!
 
-Where necessary, I added a Section called 'Hint' at the upper Part of the Build Scripts, which list in example Flags which are not compatible or not fully supported. It also contains other Hints about removed or disabled Features where necessary.
+Where necessary, I added a Section called 'WARNING:' at the upper Part of the Build Scripts, which list in example Flags which are not compatible or not fully supported. It also contains other Hints about removed or disabled Features where necessary.
 
 And as usual: Feel free to test and give Feedback, create Pull Requests etc.
 

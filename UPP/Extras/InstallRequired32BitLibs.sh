@@ -83,4 +83,5 @@ else
   fi
   fi
 # End of the copied Install Script
+echo DONE!
 exit

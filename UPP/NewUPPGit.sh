@@ -15,4 +15,5 @@ if [ -d $HOME/Dev/GitRepos/ultimatepp/ ]; then rm --interactive=never --dir --re
 fi
 cd $HOME/Dev/GitRepos/
 git clone https://github.com/ultimatepp/ultimatepp.git --verbose --progress
+echo DONE!
 exit

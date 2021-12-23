@@ -15,6 +15,5 @@ if [ -d $HOME/Dev/GitRepos/AKKomPolTool/ ]; then rm --interactive=never --dir --
 fi
 cd $HOME/Dev/GitRepos/
 git clone https://github.com/MeerMusik/AKKomPolTool.git --verbose --progress
-cd $HOME/Dev/GitRepos/AKKomPolTool/
-git pull --verbose
+echo DONE!
 exit
