@@ -9,4 +9,5 @@
 # - CC0 1.0 Universal License Text End -
 cd $HOME/Dev/GitRepos/ninja/
 git pull --verbose
+echo DONE!
 exit

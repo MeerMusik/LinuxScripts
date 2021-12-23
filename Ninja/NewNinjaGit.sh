@@ -15,4 +15,5 @@ if [ -d $HOME/Dev/GitRepos/ninja/ ]; then rm --interactive=never --dir --recursi
 fi
 cd $HOME/Dev/GitRepos/
 git clone https://github.com/ninja-build/ninja.git --verbose --progress
+echo DONE!
 exit

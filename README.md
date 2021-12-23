@@ -14,37 +14,27 @@ All Scripts are written to compliment each other. Example: Locally cloned Reposi
 
 The Build Scripts will search for the Libraries in this Directory.
 
-The Majority of these Scripts were used in combination with the Qt Framework, to create the Qt based Version of my Tool. As I have now switched to Ultimate++, they are currently not needed. The other Scripts like for ICU and OpenSSL will or will not get used again.
+Please keep in mind that these Scripts will only get updated if I run into Issues myself! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler!
 
-Please keep in mind that these Scripts will only be updated when I feel the need for it! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or is not compatible with the used Library or Compiler.
-
-ATTENTION: As the Majority of these Scripts are currently unused, Bug Reports will probably stay open for many months. The best options to get something fixed currently are:
-1. Clone the Repo -> Fix the Bug -> Create a Merge Request ("Pull Request") OR
-2. Fork the Repo -> Fix the Bug -> Enjoy
-
-These Scripts will otherwise only get updated if I run into Issues myself.
+As the Majority of these Scripts are currently unused, Bug Reports will probably stay open for many months. The best options to get something fixed currently are:
+1. Clone the Repository -> Fix the Bug -> Create a Pull Request -> Wait for my Decision OR
+2. Fork the Repository -> Fix the Bug -> Enjoy the Error Free Script
 
 Additionally: All UNSUPPORTED Scripts, are in the UNSUPPORTED Directory! You can read about the UNSUPPORTED Scripts in this Document:
 1. [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
 
-## All Scripts are heavily customized. Read the dedicated Sections for Details
+## General Infos
 All Scripts were created and successfully tested under the following Linux and Compiler Versions:
 1. Manjaro (Arch Linux based), KDE 5, Stable Repository, x86_64
-2. GNU GCC/G++ Compiler, 10.2 or newer, x86, x86_64
+2. GNU GCC/G++ Compiler, 11.1 or newer, x86, x86_64
 
 Other Linux Distributions are currently untested by me.
 
-Newer GNU GCC/G++ Versions should be compatible too.
-
-Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested was GCC 8.1.0 back in 2019.
-
-You usually need to remove or modify some Compiler Flags for newer and older Versions.
-
 Other Compiler Variants like Clang-GCC are untested and therefore not supported by me!
 
-All Scripts are heavily personalized and have a lot of Compiler Flags to fit my personal needs.
+Older Versions should work if they are not too old. What too old means, has not been fully tested. The oldest GCC Version I tested some of the older Versions of Libraries like ICU and OpenSSL with, was GCC 8.1.0 back in 2019.
 
-Please look at the different Sections about the Build Scripts for Version Numbers - if mentioned. But: Do not rely too heavily on Versions mentioned in this Document, as I do not guarantee to keep them updated! If in doubt, look at the Scripts.
+You usually need to remove or modify some Compiler Flags for newer and older Compiler and Linker Versions.
 
 ## LICENSE
 The Content in this Repository is Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism).
@@ -90,13 +80,48 @@ Send me a Message. I will try to reply within 96 hours. Sometimes sooner, someti
 5. Contact me on Twitter: https://twitter.com/MeerMusik
 6. Contact Form on my personal Website (German): https://oliverniebuhr.de/kontakt
 
-Remember that Tweets are always public! Everyone can read what you write! If you need to send Personal Infos, send me a Direct Message!
+REMEMBER THAT TWEETS ARE ALWAYS PUBLIC! EVERYONE CAN READ WHAT YOU WRITE! IF YOU NEED TO SEND PERSONAL INFORMATIONS, SEND ME A DIRECT MESSAGE!
 
 ## List of Scripts
+Where necessary, I added a Section called 'WARNING:' at the upper Part of the Build Scripts, which list in example Flags which are not compatible or not fully supported. It also contains other Hints about removed or disabled Features where necessary.
+
+Some Security = Hardening Flags forced whenever possible:
+1. Fortify Source
+2. Position-Independent-Code or Position-Independent-Executable
+3. Stack Protector
+4. Stack-Clash Protector
+5. Read-Only Relocation
+6. Immediate Binding
+7. No Executable Stack
+8. Spectre and Meltdown Mitigation
+    1. As I use AMD, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame Intel. And AMD.
+
+Hash-Style=GNU is set by all Scripts:
+1. I have added '-Wl,--hash-style=gnu' - this leads to shorter build and link times. If your App or Library does not run on Linux Versions using a too old Binutils Version, set the Value to:
+    1. -Wl,--hash-style=both - this is the Default Value, which will write the old slow SYSV Sections and the newer GNU Sections into the Header of the File. Alternatively set it to write only the old Value: -Wl,--hash-style=sysv
+    2. It seems this was introduced in Binutils 2.17.50.0.2 Beta. It became usable after some Bugs were fixed. Probably any Version from Binutils 2.17.50.0.6 Beta and later should work. Take this with a huge Container of Salt! Do your own testing to be on the relatively safe side!
+    3. I guess anything released beginning from January 2007 should be safe
+    4. You also need the correct GLIBC Version. Probably at least Version 2.5 but I have not researched this Topic. You are on your own with this!
+    5. Link to the [Binutils Changelog on the spinics.net Mailing List](https://www.spinics.net/lists/linux-gcc/msg00007.html)
+
+Do not rely on Versions mentioned in this Document, as I often forget to update them. If in doubt, take a look at the Scripts.
+
+Static Builds: For Compatibility Reasons, Static Builds are the usual weird Linux Mix:
+
+1. Executables are: ELF 32 / 64 -bit LSB pie executables, dynamically linked
+2. Static Libraries are normal Static Libraries
+
+Should Linux reach Maturity in my Lifetime, I will turn Static Builds into real Static Builds.
+
+And as usual: Feel free to test and give Feedback, create Pull Requests etc.
+
 ### AKKomPolTool / Pirates-Little-Helper - (WIP NAME. PLACEHOLDER)
+Status: Delayed indefinitely <br>
+Version: Main Branch <br>
+
 The Links to the Files have been removed while the Tool will be rewritten from Scratch in another Framework.
 
-The old Source Code, based on the Qt Framework, will not be published: It is discontinued and in 'Recycle Mode'.
+The old Source Code, based on the Qt Framework, will not be published: Most of it has been deleted. Other Parts like Scripts will be recycled where possible.
 
 Info:
 1. My personal Website (German): https://oliverniebuhr.de
@@ -111,7 +136,7 @@ Build it: The real Build Scripts will be added when they are ready...
 2. [I AM AN EMPTY PLACEHOLDER! IGNORE ME!](I AM AN EMPTY PLACEHOLDER! IGNORE ME!)
 
 ### Boost - C++ Libraries
-Status: Currently not used<br>
+Status: Currently not used <br>
 Version: Master Branch
 
 Infos:
@@ -129,7 +154,7 @@ Build it:
 4. X86, Static, Debug and Release: [Boostx86Static.sh](Boost/Boostx86Static.sh)
 
 ### Botan - Crypto and TLS for Modern C++
-Status: Unused. Kept just in case.<br>
+Status: Unused. Kept in case it turned out to be a Alternative to OpenSSL. <br>
 Version: Master Branch
 
 Infos:
@@ -146,16 +171,61 @@ Build it:
 3. X86, Dynamic, Debug and Release: [Botanx86.sh](Botan/Botanx86.sh)
 4. X86, Static, Debug and Release: [Botanx86Static.sh](Botan/Botanx86Static.sh)
 
+### CLANG / LLVM - The LLVM Compiler Infrastructure
+Status: Currently not used <br>
+Version: Release/13.x Branch
+
+Building from Source is optional. I have only used Clang as a Parser for Qt Framework specific Parts. I have not yet built any Library with Clang directly.
+
+LLDB has 'swig' as an additional Dependency. Make sure to install 'swig' or disable the LLDB Project if you dont want or need the LLVM Debugger.
+1. swig Website: http://www.swig.org/
+
+Infos:
+1. If you do not have a specific use case to build a customized Compiler, you should use the prebuilt Binaries provided by your Distribution. It is much less hassle, you will save a lot of time and keep your frustation Level to a minimum.
+2. If there are no prebuilt Binaries for your Distribution: Try your Luck at official LLVM Download Website: https://releases.llvm.org/
+3. General Documentation: https://llvm.org/docs/
+4. How to build Clang / LLVM: Basic starting Guide: https://clang.llvm.org/get_started.html
+
+Disabled Functionality:
+1. Colored Output: -DLLVM_ENABLE_TERMINFO='OFF'
+
+Colored Output requires ncurses. As different Distributions deploy different Versions of ncurses, it often leads to linking errors. If you want colored output, enable that Flag and also install ncurses! Make sure to install the correct Version! I have never used ncurses, therefore I can not tell you which Version you need!
+
+Get the Source Code:
+1. Clone Git Repository to local Drive: [NewLLVMGit.sh](LLVM/NewLLVMGit.sh)
+2. Update local Git Repository: [UpdateLLVMGit.sh](LLVM/UpdateLLVMGit.sh)
+
+Build it:
+1. X86_64, Debug: [LLVMx64Debug.sh](LLVM/LLVMx64Debug.sh)
+2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
+
+Required Free Space during build time:
+1. Debug Build with Unit Tests: Circa 204.0 Gigabyte
+2. Release Build with Unit Tests: Circa 9.1 Gigabyte
+
+Required Free Space for Installation:
+1. Debug Build: Circa 73.3 Gigabyte
+2. Release Build: Circa 3.5 Gigabyte
+
+Build time: 16 Cores 32 Threads, 64 GB RAM, 32 GB fixed SWAPFILE (SATA SSD):
+1. Debug Build: Limited to 16 Parallel Link Jobs = Circa 34 Minutes plus running Unit Tests plus installing = Circa 41 Minutes total
+2. Release Build: Circa 21 Minutes plus running Unit Tests plus installing = circa 25 Minutes total
+
+No X86 = 32-Bit only Scripts:
+1. I do not want to install 32-Bit Python from an unofficial Repository
+2. I could build the old 'lib32-python' from the AUR, but the Version is usually outdated and the Package Script seems to have some Issues.
+    1. Also the Build and Config Script for Packages will break, if they do not keep getting updated. This is unavoidable
+3. The X86_64 Compiler is able to build Binaries for the X86 Architecture anyway
+
 ### CMake - Build Management Tool. Used to build GammaRay, Qt 6.x and other
-Status: Used when a Tool or Library supports it or has it set as a fixed Dependency.<br>
+Status: Used when a Tool or Library supports it or has it set as a fixed Dependency. <br>
 Version: Master Branch
+
+I usually use the latest CMake Version provided by my Linux Distribution.
 
 I Build only from Source, when I need to test specific fixes or a new Feature.
 
 Attention: By Default, You need an existing CMake and Ninja Installation to build CMake from Source! You can uncomment the Lines in the Script to use 'Make'. Do not forget to comment the CMake specific Parts - otherwise you will break the Scripts :)
-
-I usually use the latest prebuilt x86_64 Binaries (ZIP Archive) from https://cmake.org/download/<br>
-If you are unsure: Download the ZIP Archive: No hassle with Installation and Uninstallation. Also very simple to overwrite all the Files with a newer Version that way
 
 Infos:
 1. Official Documentation: https://cmake.org/cmake/help/latest/
@@ -168,65 +238,27 @@ Get the Source Code:
 Build it:
 1. X86_64, Dynamic, Release: [CMakex64Release.sh](CMake/CMakex64Release.sh)
 
-### GammaRay - Introspection Tool for the Qt Framework
-See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
-
 ### ICU - International Components for Unicode
-Status: Currently unused. If it is still needed, has to be determined.<br>
-Version: maint/maint-69
+Status: Currently unused. If it is still needed, has to be determined. <br>
+Version: maint/maint-70
 
 Infos:
 1. Documentation: http://site.icu-project.org/docs
-2. Download Source Archive or prebuilt Binaries directly: http://site.icu-project.org/download
+2. Download Source Archive or prebuilt Binaries directly: https://icu.unicode.org/download
 
 Get the Source Code:
 1. Clone Git Repository to local Drive: [NewICUGit.sh](ICU/NewICUGit.sh)
 2. Update local Git Repository: [UpdateICUGit.sh](ICU/UpdateICUGit.sh)
 
-You also need [Git Large File Storage Extension](https://git-lfs.github.com/)<br>
-Need help setting up Git LFS? [Follow the Section 'Detailed Instructions' -> 'Prerequisites: Git and Git LFS' at the ICU Project Site](http://site.ICU-project.org/repository)
+You also need [Git Large File Storage Extension](https://git-lfs.github.com/) <br>
+Need help setting up Git LFS? [Follow the Section 'Detailed Instructions' -> 'Prerequisites: Git and Git LFS' at the ICU Project Site](https://icu.unicode.org/repository)
 
 Build it:
 1. X86_64, Debug and Release: [ICUx64.sh](ICU/ICUx64.sh)
 2. X86, Debug and Release: [ICUx86.sh](ICU/ICUx86.sh)
 
-### LLVM / CLANG- The LLVM Compiler Infrastructure
-Status: Currently not used<br>
-Version: Release/12.x Branch
-
-Building from Source is optional. I have only used Clang as a Parser for Qt Framework specific Parts. I have not yet built any Library with Clang directly.
-
-LLDB has 'swig' as an additional Dependency. Make sure to install 'swig' or disable the LLDB Project if you dont want or need the LLVM Debugger.
-1. swig Website: http://www.swig.org/
-
-Infos:
-1. You should use the prebuilt Binaries provided by your Distribution
-2. If there are none: You can use the LLVM prebuilt Binaries from https://releases.llvm.org/
-3. General Documentation: https://llvm.org/docs/
-4. How to build Clang/LLVM: Basic starting Guide: https://clang.llvm.org/get_started.html
-
-Disabled Functionality:
-1. Colored Output: -DLLVM_ENABLE_TERMINFO='OFF'
-
-Colored Output requires ncurses. As different Distributions deploy different Versions of ncurses, it often leads to linking errors. If you want colored output, enable that Flag and also install ncurses! Make sure to install the correct Version! I never used ncurses, therefore I can not tell you which Version you need!
-
-Broken Functionality:
-1. Tests. I do not need them right now. Wasted a lot of time trying to get 'ninja test' to work. The LLVM Documentation is a horrible mess for the most part. Should I ever need them, I will try to get it to work. Otherwise: Feel free to fix and send a Merge Request :)
-
-Get the Source Code:
-1. Clone Git Repository to local Drive: [NewLLVMGit.sh](LLVM/NewLLVMGit.sh)
-2. Update local Git Repository: [UpdateLLVMGit.sh](LLVM/UpdateLLVMGit.sh)
-
-Build it:
-1. X86_64, Debug: [LLVMx64Debug.sh](LLVM/LLVMx64Debug.sh)
-2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
-
-There are NO X86 (32-Bit) Scripts:
-1. I do not want to install 32-Bit Python from an unofficial Repository
-2. I could build it from the AUR, but the Versions are usually outdated. Also Packages can and will break, if they do not keep getting updated. This is unavoidable
-
 ### Ninja - The Ninja Build System
-Status: Heavily recommended! I use it whenever possible. Not used with Ultimate++<br>
+Status: Heavily recommended! I use it whenever possible. Not used with Ultimate++ <br>
 Version: Master Branch
 
 Infos:
@@ -243,7 +275,7 @@ Build it:
 Attention: You need Python for the Bootstrapping Script!
 
 ### OpenSSL - Cryptography and SSL/TLS Toolkit
-Status: Currently unused<br>
+Status: Currently unused <br>
 Version: 1.1.1 Branch
 
 Additional Infos:
@@ -259,23 +291,13 @@ Get the Source Code:
 2. Update local Git Repository: [UpdateOpenSSLGit.sh](OpenSSL/UpdateOpenSSLGit.sh)
 
 Build it:
-1. X86_64, Dynamic, Debug: [OpenSSLx64Debug.sh](OpenSSL/OpenSSLx64Debug.sh)
-2. X86_64, Static, Debug: [OpenSSLx64DebugStatic.sh](OpenSSL/OpenSSLx64DebugStatic.sh)
-3. X86_64, Dynamic, Release: [OpenSSLx64Release.sh](OpenSSL/OpenSSLx64Release.sh)
-4. X86_64, Static, Release: [OpenSSLx64ReleaseStatic.sh](OpenSSL/OpenSSLx64ReleaseStatic.sh)
-5. X86, Dynamic, Debug: [OpenSSLx86Debug.sh](OpenSSL/OpenSSLx86Debug.sh)
-6. X86, Static, Debug: [OpenSSLx86DebugStatic.sh](OpenSSL/OpenSSLx86DebugStatic.sh)
-7. X86, Dynamic, Release: [OpenSSLx86Release.sh](OpenSSL/OpenSSLx86Release.sh)
-8. X86, Release, Static: [OpenSSLx86ReleaseStatic.sh](OpenSSL/OpenSSLx86ReleaseStatic.sh)
-
-### Qt Framework - Cross-Platform Application Development Framework
-See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
-
-### QtIFW - Qt Installer Framework
-See [README - NO LONGER SUPPORTED SCRIPTS](UNSUPPORTED/README.md)
+1. X86_64, Dynamic, Debug and Release: [OpenSSLx64.sh](OpenSSL/OpenSSLx64.sh)
+2. X86_64, Static, Debug and Release: [OpenSSLx64Static.sh](OpenSSL/OpenSSLx64Static.sh)
+3. X86, Dynamic, Debug and Release: [OpenSSLx86.sh](OpenSSL/OpenSSLx86.sh)
+4. X86, Static, Debug and Release: [OpenSSLx86Static.sh](OpenSSL/OpenSSLx86Static.sh)
 
 ### Ultimate++ - A C++ Cross-Platform Rapid Application Development Framework
-Status: Currently the replacement for the Qt Framework<br>
+Status: Currently the replacement for the Qt Framework <br>
 Version: Master Branch
 
 Additional Infos:
@@ -293,8 +315,8 @@ Additional Infos:
 /usr/include/glib-2.0/glib/gmacros.h:823:46: note: in definition of macro 'G_STATIC_ASSERT'
 823 | #define G_STATIC_ASSERT(expr) static_assert (expr, "Expression evaluates to false")
 
-1. Install the Lib32 Variant of GLIB2
-2. Make sure all GLIB2 Dependencies are installed as Lib32 Variants as well
+1. Install the Lib32-GLIB2
+2. Make sure all Lib32-GLIB2 Dependencies are installed as Lib32 Variants as well
 
 Additional Hints for building X86 Libraries on a X86_64 PC:
 Ultimate++ requires specific Libraries like GTK3 and its Dependencies. Make sure that you have all the Lib32 Variants of the required Libraries installed!
@@ -339,9 +361,9 @@ One File launches the x86_64 Version with no additional Environment Settings. Th
 
 1. LD_LIBRARY_PATH=/usr/lib32/ PKG_CONFIG_PATH=/usr/lib32/pkgconfig/
 
-Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username.
+Make sure to edit the Files and fix the Paths to fit your Desktop Environment and your Username. After that, place them in '/home/[your username]/.local/share/applications/'.
 
-I am NOT providing the PNG File for the Icon: It will automatically copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
+I am NOT providing the PNG File for the Icon: It should automatically get copied when using 'Install theide.desktop'. If this does not work for you, you have to copy the File manually into the correct Directory.
 
 Ultimate++ .desktop Files:
 1. 64-Bit IDE - 32-Bit Paths: [TheIDE_32BitPaths.desktop](UPP/Extras/TheIDE_32BitPaths.desktop)
@@ -351,10 +373,10 @@ Alternatively: Use Shell Shell Scripts:
 1. 64-Bit IDE - 32-Bit Paths: [StartIDE32BitPaths.sh](UPP/Extras/StartIDE32BitPaths.sh)
 2. 64-Bit IDE - Default Paths: [StartIDEDefaultPaths.sh](UPP/Extras/StartIDEDefaultPaths.sh)
 
-I have not yet found a Solution to set up additional Environment Paths depending on Compiler usage. I will contact the UPP Developers and ask if there is a better Solution. If there is, the Files will probably later removed again from this Repository.
+I have not yet found a Solution to set up additional Environment Paths depending on Compiler usage. If there is a better Solution long-term, the Files will probably later removed from this Repository.
 
 ### wxWidgets - C++ Toolkit
-Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead<br>
+Status: It was a possible Candidate to replace the Qt Framework. Switched to Ultimate++ instead <br>
 Version: Master Branch = Development Branch
 
 Infos:
@@ -370,12 +392,19 @@ Build it:
 1. X86_64, Static, Debug and Release: [wxWidgetsx64.sh](wxWidgets/wxWidgetsx64.sh)
 2. X86, Static, Debug and Release: [wxWidgetsx86.sh](wxWidgets/wxWidgetsx86.sh)
 
+Attention:
+1. The X86 Script relies on Libraries which are partially only available through AUR
+    1. I have disabled wxSecretStore and wxMediaCtrl for that reason. If you want to use those, set the Boolean Value from "OFF" to "ON"
+2. For other Distributions, make sure you have Access to the Lib32 Variants of for example 'secretstore' and 'gstplayer-1.0.so'
+   1. X86_64 Distributions will remove more Lib32 Libraries over time. Therefore, the above List is based on the last time I tried to build wxWidgets with basic Functionality in December 2021
+
 ## Other Tools
 Hard Dependencies or recommended Libraries.
 
 1. NASM - Netwide Assembler. For OpenSSL. Optional but highly recommended
-    1. Download the latest prebuilt Binaries: https://www.nasm.us/pub/nasm/releasebuilds/
-    2. Version: Always the latest
+    1. Preferable way to get it: Install nasm through your trusty Package Manager
+    2. Alternatively: Download the latest prebuilt Binaries: https://www.nasm.us/pub/nasm/releasebuilds/
+    3. Version: Always the latest
 
 2. Perl Programming Language
     1. Required as an Interpreter for all Projects using Perl Scripts
