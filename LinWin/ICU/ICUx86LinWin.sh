@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 # SPDX-License-Identifier: Unlicense OR CC0-1.0
-# Copyright © 2013-2021 Oliver Niebuhr, https://github.com/MeerMusik/LinuxScripts / https://oliverniebuhr.de / https://twitter.com/MeerMusik
+# Copyright © 2013-2022 Oliver Niebuhr, https://github.com/MeerMusik/LinuxScripts / https://oliverniebuhr.de / https://twitter.com/MeerMusik
 # - CC0 1.0 Universal License Text Start -
 # LinuxScripts
-# Written in 2013-2021 by Oliver Niebuhr, email: gitrepos@oliverniebuhr.de / Website: https://oliverniebuhr.de / Twitter: https://twitter.com/MeerMusik
+# Written in 2013-2022 by Oliver Niebuhr, email: gitrepos@oliverniebuhr.de / Website: https://oliverniebuhr.de / Twitter: https://twitter.com/MeerMusik
 # To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
 # You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>
 # - CC0 1.0 Universal License Text End -
@@ -18,8 +18,8 @@ if [ ! -d $HOME/Dev/Builds/ ]; then mkdir $HOME/Dev/Builds/
 fi
 if [ ! -d $HOME/Dev/Builds/LinWin/ ]; then mkdir $HOME/Dev/Builds/LinWin/
 fi
-#if [ -d $HOME/Dev/Builds/LinWin/ICUx86DebugNative/ ]; then rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/Builds/LinWin/ICUx86DebugNative/*.* $HOME/Dev/Builds/LinWin/ICUx86DebugNative/* $HOME/Dev/Builds/LinWin/ICUx86DebugNative/
-#fi
+if [ -d $HOME/Dev/Builds/LinWin/ICUx86DebugNative/ ]; then rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/Builds/LinWin/ICUx86DebugNative/*.* $HOME/Dev/Builds/LinWin/ICUx86DebugNative/* $HOME/Dev/Builds/LinWin/ICUx86DebugNative/
+fi
 if [ ! -d $HOME/Dev/Builds/LinWin/ICUx86DebugNative/ ]; then cp --force --recursive --verbose $HOME/Dev/GitRepos/ICU/icu4c/ $HOME/Dev/Builds/LinWin/ICUx86DebugNative/
 fi
 #export CPPFLAGS="-L/usr/lib32/"
@@ -107,7 +107,7 @@ export CFLAGS='-DPIC -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -fasynchronous-un
 export CXXFLAGS='-DPIC -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -fasynchronous-unwind-tables -fexceptions -fcf-protection=branch -finput-charset=utf-8 -flto -fno-omit-frame-pointer -fPIC -fstack-protector-all -grecord-gcc-switches -m32 -mindirect-branch=thunk -mindirect-branch-register -pthread -O3 -g0 -pipe -std=c++17 -Wall -Walloc-zero -Wcast-align -Wclass-memaccess -Wconversion -Wdouble-promotion -Wduplicated-branches -Wduplicated-cond -Wextra -Wformat=2 -Wformat-nonliteral -Wformat-overflow=2 -Wformat-security -Wformat-truncation -Wimplicit-fallthrough -Wlogical-op -Wmisleading-indentation -Wmissing-declarations -Wnonnull -Wnon-virtual-dtor -Wnull-dereference -Wold-style-cast -Woverloaded-virtual -Wpedantic -Wpointer-arith -Wreorder -Wshadow -Wsign-conversion -Wstack-protector -Wstrict-overflow -Wtrampolines -Wunused -Wuseless-cast -Wvla -Wl,-Os -Wl,--allow-multiple-definition -Wl,--build-id=sha1 -Wl,-mi386pe -Wl,-s -Wl,--discard-locals -Wl,--dynamicbase -Wl,--enable-auto-image-base -Wl,-flto -Wl,--nxcompat -Wl,-rpath=\$\$\$$ORIGIN/../lib'
 $HOME/Dev/GitRepos/ICU/icu4c/source/configure --host=i686-w64-mingw32 --with-cross-build=$HOME/Dev/Builds/LinWin/ICUx86ReleaseNative/source/ --enable-icu-config --disable-debug --enable-release --enable-shared --enable-static --enable-extras --enable-icuio --enable-layoutex --enable-tools --enable-tests --disable-samples --prefix=$HOME/Dev/Binaries/LinWin/ICUx86ReleaseWin/
 echo Routing Output to /dev/null as the Terminal / Console is very slow to display the Output and refresh the Screen. Which will massively increase the build time. Please wait a Moment...
-# To write the Output into a Log File: 1>~/Dev/ICUx86ReleaseLog.txt 2>&1
+# To write the Output into a Log File: 1>~/Dev/ICUx86ReleaseWinLog.txt 2>&1
 make --jobs=$(nproc) V=1 1>~/Dev/ICUx86ReleaseWinLog.txt 2>&1
 #LD_PRELOAD=$HOME/Dev/Builds/LinWin/ICUx86ReleaseWin/lib/
 #make --jobs=$(nproc) V=1 check
