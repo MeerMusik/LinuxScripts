@@ -135,6 +135,13 @@ Build it: The real Build Scripts will be added when they are ready...
 1. [I AM AN EMPTY PLACEHOLDER! IGNORE ME!](I AM AN EMPTY PLACEHOLDER! IGNORE ME!)
 2. [I AM AN EMPTY PLACEHOLDER! IGNORE ME!](I AM AN EMPTY PLACEHOLDER! IGNORE ME!)
 
+Build it: Cross-Compile Linux to Windows: The real Build Scripts will be added when they are ready...
+1. [I AM AN EMPTY PLACEHOLDER! IGNORE ME!](LinWin/I AM AN EMPTY PLACEHOLDER! IGNORE ME!)
+2. [I AM AN EMPTY PLACEHOLDER! IGNORE ME!](LinWin/I AM AN EMPTY PLACEHOLDER! IGNORE ME!)
+
+Cross-Compile Limitations: <br>
+Unknown yet!
+
 ### Boost - C++ Libraries
 Status: Currently not used <br>
 Version: Master Branch
@@ -217,7 +224,7 @@ No X86 = 32-Bit only Scripts:
     1. Also the Build and Config Script for Packages will break, if they do not keep getting updated. This is unavoidable
 3. The X86_64 Compiler is able to build Binaries for the X86 Architecture anyway
 
-### CMake - Build Management Tool. Used to build GammaRay, Qt 6.x and other
+### CMake - Build Management Tool
 Status: Used when a Tool or Library supports it or has it set as a fixed Dependency. <br>
 Version: Master Branch
 
@@ -257,6 +264,13 @@ Build it:
 1. X86_64, Debug and Release: [ICUx64.sh](ICU/ICUx64.sh)
 2. X86, Debug and Release: [ICUx86.sh](ICU/ICUx86.sh)
 
+Build it - Cross-Compile Linux to Windows:
+1. X86_64, Debug and Release: [ICUx64LinWin.sh](LinWin/ICU/ICUx64LinWin.sh)
+2. X86, Debug and Release: [ICUx86LinWin.sh](LinWin/ICU/ICUx86LinWin.sh)
+
+Cross-Compile Limitations: <br>
+Tests are disabled as WINE can not find the necessary Runtime Libraries. Maybe I can I find some Settings to make the tests work - long-term.
+
 ### Ninja - The Ninja Build System
 Status: Heavily recommended! I use it whenever possible. Not used with Ultimate++ <br>
 Version: Master Branch
@@ -295,6 +309,16 @@ Build it:
 2. X86_64, Static, Debug and Release: [OpenSSLx64Static.sh](OpenSSL/OpenSSLx64Static.sh)
 3. X86, Dynamic, Debug and Release: [OpenSSLx86.sh](OpenSSL/OpenSSLx86.sh)
 4. X86, Static, Debug and Release: [OpenSSLx86Static.sh](OpenSSL/OpenSSLx86Static.sh)
+
+Build it - Cross-Compile Linux to Windows:
+1. X86_64, Dynamic, Debug and Release: [OpenSSLx64LinWin.sh](LinWin/OpenSSL/OpenSSLx64LinWin.sh)
+2. X86_64, Static, Debug and Release: [OpenSSLx64StaticLinWin.sh](LinWin/OpenSSL/OpenSSLx64StaticLinWin.sh)
+3. X86, Dynamic, Debug and Release: [OpenSSLx86LinWin.sh](LinWin/OpenSSL/OpenSSLx86LinWin.sh)
+4. X86, Static, Debug and Release: [OpenSSLx86StaticLinWin.sh](LinWin/OpenSSL/OpenSSLx86StaticLinWin.sh)
+
+Cross-Compile Limitations: <br>
++++FIXME+++ TEST IF OPENSSL TESTS CAN RUN THROUGH WINE ON LINUX!
+Tests are disabled as WINE can not find the necessary Runtime Libraries. Maybe I can I find some Settings to make the tests work - long-term.
 
 ### Ultimate++ - A C++ Cross-Platform Rapid Application Development Framework
 Status: Currently the replacement for the Qt Framework <br>
