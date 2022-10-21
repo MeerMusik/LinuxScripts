@@ -15,6 +15,6 @@ if [ -d $HOME/Dev/GitRepos/llvm-project/ ]; then rm --interactive=never --dir --
 fi
 cd $HOME/Dev/GitRepos/
 echo Set the wanted Branch accordingly or remove it completely to use the MAIN Branch
-git clone --branch release/14.x https://github.com/llvm/llvm-project.git --verbose --progress
+git clone --branch release/16.x https://github.com/llvm/llvm-project.git --verbose --progress
 echo DONE!
 exit
