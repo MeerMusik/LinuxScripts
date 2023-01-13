@@ -100,8 +100,8 @@ Hash-Style=GNU is set by all Scripts:
 1. I have added '-Wl,--hash-style=gnu' - this leads to shorter build and link times. If your App or Library does not run on Linux Versions using a too old Binutils Version, set the Value to:
     1. -Wl,--hash-style=both - this is the Default Value, which will write the old slow SYSV Sections and the newer GNU Sections into the Header of the File. Alternatively set it to write only the old Value: -Wl,--hash-style=sysv
     2. It seems this was introduced in Binutils 2.17.50.0.2 Beta. It became usable after some Bugs were fixed. Probably any Version from Binutils 2.17.50.0.6 Beta and later should work. Take this with a huge Container of Salt! Do your own testing to be on the relatively safe side!
-    3. I guess anything released beginning from January 2007 should be safe
-    4. You also need the correct GLIBC Version. Probably at least Version 2.5 but I have not researched this Topic. You are on your own with this!
+    3. I guess anything released beginning from January 2007 should be safe. But again: Do your homework to be on the safe side.
+    4. You also need the correct GLIBC Version. Probably at least Version 2.5 but I have not researched this Topic thoroughly. You are on your own with this!
     5. Link to the [Binutils Changelog on the spinics.net Mailing List](https://www.spinics.net/lists/linux-gcc/msg00007.html)
 
 Do not rely on Versions mentioned in this Document, as I often forget to update them. If in doubt, take a look at the Scripts.
@@ -109,7 +109,7 @@ Do not rely on Versions mentioned in this Document, as I often forget to update 
 Static Builds: For Compatibility Reasons, Static Builds are the usual weird Linux Mix:
 
 1. Executables are: ELF 32 / 64 -bit LSB pie executables, dynamically linked
-2. Static Libraries are normal Static Libraries
+2. Static Libraries are are the usual "Fake"-Static Libraries
 
 Should Linux reach Maturity in my Lifetime, I will turn Static Builds into real Static Builds.
 
