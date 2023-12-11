@@ -25,7 +25,7 @@ The best options to get something fixed are:
 ## General Infos
 All Scripts were created and successfully tested under the following Linux and Compiler Versions:
 1. Manjaro, KDE 5, Stable Repository, x86_64
-2. GNU GCC/G++ Compiler, 11.1 or newer, x86, x86_64
+2. GNU GCC/G++ Compiler, 11.1 or later, x86, x86_64
 
 Other Linux Distributions are untested by me.
 
