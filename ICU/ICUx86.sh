@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 # SPDX-License-Identifier: Unlicense OR CC0-1.0
-# Copyright © 2013-2021 Oliver Niebuhr, https://github.com/MeerMusik/LinuxScripts / https://oliverniebuhr.de / https://twitter.com/MeerMusik
+# Copyright © 2013-2024 Oliver Niebuhr, https://github.com/MeerMusik/LinuxScripts / https://oliverniebuhr.de / https://twitter.com/MeerMusik
 # - CC0 1.0 Universal License Text Start -
 # LinuxScripts
-# Written in 2013-2021 by Oliver Niebuhr, email: gitrepos@oliverniebuhr.de / Website: https://oliverniebuhr.de / Twitter: https://twitter.com/MeerMusik
+# Written in 2013-2024 by Oliver Niebuhr, email: gitrepos@oliverniebuhr.de / Website: https://oliverniebuhr.de / Twitter: https://twitter.com/MeerMusik
 # To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
 # You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>
 # - CC0 1.0 Universal License Text End -
@@ -20,7 +20,7 @@ fi
 if [ ! -d $HOME/Dev/Builds/ICUx86/ ]; then mkdir $HOME/Dev/Builds/ICUx86/
 fi
 cd $HOME/Dev/Builds/ICUx86/
-cp --force --verbose --recursive $HOME/Dev/GitRepos/ICU/icu4c/ $HOME/Dev/Builds/ICUx86/
+cp --force --verbose --recursive $HOME/Dev/GitRepos/icu/icu4c/ $HOME/Dev/Builds/ICUx86/
 cd $HOME/Dev/Builds/ICUx86/icu4c/source/
 ./configure --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu --target=i686-pc-linux-gnu --enable-debug --disable-release --enable-shared --with-library-bits=32 --prefix=$HOME/Dev/Binaries/ICUx86Debug/
 echo Routing Output to /dev/null as the Terminal / Console is very slow to display the Output and refresh the Screen. Which will massively increase the build time. Please wait a Moment...
