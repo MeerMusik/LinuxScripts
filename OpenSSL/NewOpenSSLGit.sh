@@ -14,7 +14,7 @@ fi
 if [ -d $HOME/Dev/GitRepos/openssl/ ]; then rm --interactive=never --dir --recursive --force --verbose $HOME/Dev/GitRepos/openssl/*.* $HOME/Dev/GitRepos/openssl/* $HOME/Dev/GitRepos/openssl/
 fi
 cd $HOME/Dev/GitRepos/
-git clone --branch openssl-3.2 https://github.com/openssl/openssl.git --verbose --progress
+git clone --branch openssl-3.3 https://github.com/openssl/openssl.git --verbose --progress
 #cd $HOME/Dev/GitRepos/openssl/
 #git checkout master --progress
 #git branch --set-upstream-to=origin/master master --verbose

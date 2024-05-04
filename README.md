@@ -1,6 +1,6 @@
 [[_TOC_]]
 # About LinuxScripts
-(C) Copyright 2013-2023 Oliver Niebuhr
+(C) Copyright 2013-2024 Oliver Niebuhr
 
 Very basic Scripts to
 1. Clone (Download) the Source Code of Libraries and Frameworks like ICU, LLVM, OpenSSL and wxWidgets from their Git Repositories
@@ -24,7 +24,7 @@ The best options to get something fixed are:
 
 ## General Infos
 All Scripts were created and successfully tested under the following Linux and Compiler Versions:
-1. Manjaro, KDE 5, Stable Repository, x86_64
+1. openSUSE Tumbleweed, KDE Plasma 6, Stable Repository, x86_64
 2. GNU GCC/G++ Compiler, 11.1 or later, x86, x86_64
 
 Other Linux Distributions are untested by me.
