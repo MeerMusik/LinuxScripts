@@ -15,5 +15,8 @@ if [ -d $HOME/Dev/GitRepos/boost/ ]; then rm --interactive=never --dir --recursi
 fi
 cd $HOME/Dev/GitRepos/
 git clone --recursive https://github.com/boostorg/boost.git --verbose --progress
+cd $HOME/Dev/GitRepos/boost/
+git checkout boost-1.85.0 --progress
+git submodule update --init
 echo DONE!
 exit

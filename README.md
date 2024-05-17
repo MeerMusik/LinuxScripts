@@ -1,5 +1,6 @@
 [[_TOC_]]
 # About LinuxScripts
+
 (C) Copyright 2013-2024 Oliver Niebuhr
 
 Very basic Scripts to
@@ -23,9 +24,10 @@ The best options to get something fixed are:
 2. Fork the Repository -> Fix the Bug -> Enjoy the Error Free Script
 
 ## General Infos
+
 All Scripts were created and successfully tested under the following Linux and Compiler Versions:
 1. openSUSE Tumbleweed, KDE Plasma 6, Stable Repository, x86_64
-2. GNU GCC/G++ Compiler, 11.1 or later, x86, x86_64
+2. GNU GCC/G++ Compiler, 11.1.0 up to 14.1.0, x86, x86_64
 
 Other Linux Distributions are untested by me.
 
@@ -36,6 +38,7 @@ Older Versions should work, if they are not too old. What too old means, has not
 You usually need to remove or modify some Compiler Flags for newer and older Kernel, Compiler, Linker and Library Versions.
 
 ## LICENSE
+
 The Content in this Repository is Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism).
 
 If you live in a Jurisdiction like Germany or anywhere else outside the USA which
@@ -67,10 +70,12 @@ CC0-1.0 Universal (Public Domain with Fallback Mechanism):
 5. CC0-1.0: At SDPX.org: https://spdx.org/licenses/CC0-1.0.html
 
 ## Contributing
+
 The full Contribution Rules can be found in the
 1. [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Questions? Need to report a Bug?
+
 Send me a Message. I will try to reply within 96 hours. Sometimes sooner, sometimes later.
 1. For Bug Reports: Click on the Button "New Issue" and use the "Bug Report" Form to create a new Issue marked as Bug Report: https://github.com/MeerMusik/LinuxScripts/issues/
 2. For Questions: Click on the Button "New Issue" and use the "Question" Form to create a new Issue marked as Question: https://github.com/MeerMusik/LinuxScripts/issues/
@@ -82,6 +87,7 @@ Send me a Message. I will try to reply within 96 hours. Sometimes sooner, someti
 Remember that Tweets are always public! Everyone can read what you write! If you need to send Personal Infos, send me a Direct Message!
 
 ## List of Scripts
+
 Where necessary, I added a Section called 'WARNING:' at the upper Part of the Build Scripts, which list in example Flags which are not compatible or not fully supported. It also contains other Hints about removed or disabled Features where necessary.
 
 Some Security = Hardening Flags forced whenever possible:
@@ -112,6 +118,7 @@ Static Builds: For Compatibility Reasons, Static Builds are the usual weird Linu
 Should the GLIBC Library at some point step forward in to the year 2000 and embrace the future, I will change the Compiler and Linker Flags to turn Static Binaries into real Static Binaries. But only if I will be still alive in the year 6666.
 
 ### Boost - C++ Libraries
+
 Status: Currently not used <br>
 
 Infos:
@@ -129,6 +136,7 @@ Build it:
 4. X86, Static, Debug and Release: [Boostx86Static.sh](Boost/Boostx86Static.sh)
 
 ### Botan - Crypto and TLS for Modern C++
+
 Status: Unused. Kept in case it turned out to be a Alternative to OpenSSL. <br>
 
 Infos:
@@ -146,6 +154,7 @@ Build it:
 4. X86, Static, Debug and Release: [Botanx86Static.sh](Botan/Botanx86Static.sh)
 
 ### CLANG / LLVM - The LLVM Compiler Infrastructure
+
 Status: Currently not used <br>
 
 Building from Source is optional. I have only used Clang as a Parser for Qt Framework specific Parts. I have not yet built any Library with Clang directly.
@@ -191,6 +200,7 @@ No X86 = 32-Bit only Scripts:
 3. The X86_64 Compiler is able to build 32-Bit Binaries for the X86 Architecture anyway
 
 ### CMake - Build Management Tool
+
 Status: Used when a Tool or Library supports it or has it set as a fixed Dependency. <br>
 
 I usually use the latest CMake Version provided by my Linux Distribution.
@@ -211,6 +221,7 @@ Build it:
 1. X86_64, Dynamic, Release: [CMakex64Release.sh](CMake/CMakex64Release.sh)
 
 ### ICU - International Components for Unicode
+
 Status: Currently unused. If it is still needed, needs to be determined. <br>
 
 Infos:
@@ -236,6 +247,7 @@ Cross-Compile Limitations: <br>
 Tests are disabled as WINE can not find the necessary Runtime Libraries. Maybe I can I find some Settings to make the tests work - long-term.
 
 ### Ninja - The Ninja Build System
+
 Status: Heavily recommended. I use it whenever possible <br>
 
 Infos:
@@ -252,6 +264,7 @@ Build it:
 Attention: You need Python installed for the Bootstrapping Script!
 
 ### OpenSSL - Cryptography and SSL/TLS Toolkit
+
 Status: Currently unused <br>
 
 Additional Infos:
@@ -282,6 +295,7 @@ Cross-Compile Limitations: <br>
 Tests are disabled as WINE can not find the necessary Runtime Libraries. Maybe I can I find some Settings to make the tests work - long-term.
 
 ### Pirates-Little-Helper - (WIP NAME. PLACEHOLDER)
+
 Status: Delayed indefinitely. Project will potentially be killed off. <br>
 
 The Links to the Files have been removed while the Tool will be rewritten from Scratch in another Framework.
@@ -302,7 +316,8 @@ Cross-Compile Limitations: <br>
 Unknown yet
 
 ## Other Tools
-Hard Dependencies or recommended Libraries.
+
+Status: Hard Dependencies or recommended Libraries.
 
 1. NASM - Netwide Assembler. For OpenSSL. Optional but highly recommended
     1. Preferable way to get it: Install nasm through your trusty Package Manager
@@ -334,5 +349,6 @@ to see which Version is installed on your Distribution.
 If Python is not found, install the prebuilt Binaries provided by your Distribution. Read the Instructions for the Package Manager of your Distribution on how to do that.
 
 ## WindowsScripts
+
 I also published my Windows Scripts Dual-Licensed under "The Unlicense" (Public Domain) OR under the "CC0-1.0 Universal License" (Public Domain with Fallback Mechanism):
 1. WindowsScripts: [Repository at GitHub](https://github.com/MeerMusik/WindowsScripts)
