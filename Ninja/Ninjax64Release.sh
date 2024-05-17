@@ -24,8 +24,12 @@ cd $HOME/Dev/Builds/Ninjax64Release/ninja/
 echo Routing Output to /dev/null as the Terminal / Console is very slow to display the Output and refresh the Screen. Which will massively increase the build time. Please wait a Moment...
 # To write the Output into a Log File: 1>~/Dev/Ninjax64ReleaseLog.txt 2>&1
 ./configure.py --host=linux --platform=linux --verbose --bootstrap 1>/dev/null 2>&1
-./ninja ninja_test
-./ninja_test
+cd $HOME/Dev/Builds/Ninjax64Release/ninja/
+# ninja_test requires the GoogleTest Source available on the local Drive. This needs to be investigated later!
+# ./configure.py --host=linux --platform=linux --verbose --bootstrap --gtest-source-dir=/path/to/googletest 1>/dev/null 2>&1
+# cd $HOME/Dev/Builds/Ninjax64Release/ninja/
+#./ninja all
+#./ninja_test
 echo Script paused for 10 Seconds to be able to read the Build or Test Results! Please wait a Moment...
 sleep 10s
 if [ ! -d $HOME/Dev/Binaries/Ninjax64Release/ ]; then mkdir $HOME/Dev/Binaries/Ninjax64Release/
