@@ -1,10 +1,11 @@
 [[_TOC_]]
+
 # About LinuxScripts
 
 (C) Copyright 2013-2024 Oliver Niebuhr
 
 Very basic Scripts to
-1. Clone (Download) the Source Code of Libraries and Frameworks like ICU, LLVM, OpenSSL and wxWidgets from their Git Repositories
+1. Clone (Download) the Source Code of multiple Libraries and Frameworks from their Git Repositories
 2. Build these Libraries and Frameworks
 
 May they be useful to you in one way or another.
@@ -17,17 +18,19 @@ The Build Scripts will search for the Source Code of these Libraries in this Dir
 
 These Scripts will only get updated if I run into Issues myself! Bug Reports to fix or update a specific Compiler Flag will be ignored, if it interferes with my use case or it is not compatible with the Version of a Library and or Compiler I am using!
 
-As I am currently using Rust and Go, these Scripts are currently unused and Bug Reports will probably stay open for many months.
+As I am switching between different programming Languages and Frameworks, not frequently used Scripts can be outdated and Bug Reports will probably stay open for many Months.
 
 The best options to get something fixed are:
-1. Clone the Repository -> Fix the Bug -> Create a Pull Request -> Wait for me to Merge your PR / MR OR
+1. Clone the Repository -> Fix the Bug -> Create a Pull Request -> Wait for me to Merge your Pull Request
 2. Fork the Repository -> Fix the Bug -> Enjoy the Error Free Script
 
 ## General Infos
 
 All Scripts were created and successfully tested under the following Linux and Compiler Versions:
 1. openSUSE Tumbleweed, KDE Plasma 6, Stable Repository, x86_64
-2. GNU GCC/G++ Compiler, 11.1.0 up to 14.1.0, x86, x86_64
+2. GNU GCC/G++ Compiler, 11.1.0 up to 14.2.0, x86, x86_64
+3. Zig specific Scripts: I will update to the latest Nightly Zig Version every 1 to 2 weeks. If necessary more often.
+    1. This can change after Zig reaches API stability in Version 1.0.0
 
 Other Linux Distributions are untested by me.
 
@@ -81,8 +84,9 @@ Send me a Message. I will try to reply within 96 hours. Sometimes sooner, someti
 2. For Questions: Click on the Button "New Issue" and use the "Question" Form to create a new Issue marked as Question: https://github.com/MeerMusik/LinuxScripts/issues/
 3. eMail: Bug Report. MailTo Link: [Opens your eMail Program](mailto:gitrepos@oliverniebuhr.de?subject=LinuxScripts-Bug-Report)
 4. eMail: Question. MailTo Link: [Opens your eMail Program](mailto:gitrepos@oliverniebuhr.de?subject=LinuxScripts-Question)
-5. Contact me on Twitter: https://twitter.com/MeerMusik
-6. Contact Form on my personal Website (German): https://oliverniebuhr.de/kontakt
+5. Contact me on Mastodon: https://mastodon.social/@MeerMusik
+6. Contact me on Twitter (now called 'X'): https://x.com/MeerMusik
+7. Contact Form on my personal Website (German): https://oliverniebuhr.de/kontakt
 
 Remember that Tweets are always public! Everyone can read what you write! If you need to send Personal Infos, send me a Direct Message!
 
@@ -99,11 +103,11 @@ Some Security = Hardening Flags forced whenever possible:
 6. Immediate Binding
 7. No Executable Stack
 8. Spectre and Meltdown Mitigation
-    1. As I use AMD, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame Intel. And AMD.
+    1. As I have a AMD CPU, some Mitigations will lead to link Errors. Therefore I have to lower the Level of Security for some Mitigations. Blame Intel. And AMD.
     2. Feel free to raise the Flags for those Mitigations to a higher Value, if they work on your System
 
 Hash-Style=GNU is set by all Scripts:
-1. I have added '-Wl,--hash-style=gnu' - this leads to shorter build and link times. If your App or Library does not run on Linux Versions using a too old Binutils Version, set the Value to:
+1. I have added '-Wl,--hash-style=gnu' - this leads to shorter build and link times. If your App or Library does not run on Linux Versions because your Binutils Version is too old, set the Value to:
     1. -Wl,--hash-style=both - this is the Default Value, which will write the old slow SYSV Sections and the newer GNU Sections into the Header of the File. Alternatively set it to write only the old Value: -Wl,--hash-style=sysv
     2. It seems this was introduced in Binutils 2.17.50.0.2 Beta. It became usable after some Bugs were fixed. Probably any Version from Binutils 2.17.50.0.6 Beta and later should work. Take this with a huge Container of Salt! Do your own testing to be on the relatively safe side!
     3. I guess anything released beginning from January 2007 should be safe. But again: Do your homework to be on the safe side.
@@ -116,24 +120,6 @@ Static Builds: For Compatibility Reasons, Static Builds are the usual weird Linu
 2. Static Libraries are Static Libraries
 
 Should the GLIBC Library at some point step forward in to the year 2000 and embrace the future, I will change the Compiler and Linker Flags to turn Static Binaries into real Static Binaries. But only if I will be still alive in the year 6666.
-
-### Boost - C++ Libraries
-
-Status: Currently not used <br>
-
-Infos:
-1. Documentation: https://www.boost.org/doc/
-2. Download Source Code directly: https://boostorg.jfrog.io/artifactory/main/release/
-
-Get the Source Code:
-1. Clone Git Repository to local Drive: [NewBoostGit.sh](Boost/NewBoostGit.sh)
-2. Update local Git Repository: [UpdateBoostGit.sh](Boost/UpdateBoostGit.sh)
-
-Build it:
-1. X86_64, Shared, Debug and Release: [Boostx64.sh](Boost/Boostx64.sh)
-2. X86_64, Static, Debug and Release: [Boostx64Static.sh](Boost/Boostx64Static.sh)
-3. X86, Shared, Debug and Release: [Boostx86.sh](Boost/Boostx86.sh)
-4. X86, Static, Debug and Release: [Boostx86Static.sh](Boost/Boostx86Static.sh)
 
 ### Botan - Crypto and TLS for Modern C++
 
@@ -157,16 +143,17 @@ Build it:
 
 Status: Currently not used <br>
 
-Building from Source is optional. I have only used Clang as a Parser for Qt Framework specific Parts. I have not yet built any Library with Clang directly.
+Building from Source is optional.
 
-LLDB has 'swig' as an additional Dependency. Make sure to install 'swig' or disable the LLDB Project if you dont want or need the LLVM Debugger.
+If you use the Build Scripts as they are and want to run the LLDB Test Suite: You need to install Python and Swig.
 1. swig Website: http://www.swig.org/
+2. Install Python through your Distribution's Package Manager, if it is not already pre-installed.
 
 Infos:
 1. If you do not have a specific use case to build a customized Compiler, you should use the prebuilt Binaries provided by your Distribution. It is much less hassle, you will save a lot of time and keep your frustation Level to a minimum.
 2. If there are no prebuilt Binaries for your Distribution: Try your Luck at the official LLVM Download Website: https://releases.llvm.org/
 3. General Documentation: https://llvm.org/docs/
-4. How to build Clang / LLVM: Basic starting Guide: https://clang.llvm.org/get_started.html
+4. How to build Clang / LLVM: Basic starting Guide: https://llvm.org/docs/GettingStarted.html
 
 Disabled Functionality:
 1. Colored Output: -DLLVM_ENABLE_TERMINFO='OFF'
@@ -181,11 +168,20 @@ Build it:
 1. X86_64, Debug: [LLVMx64Debug.sh](LLVM/LLVMx64Debug.sh)
 2. X86_64, Release: [LLVMx64Release.sh](LLVM/LLVMx64Release.sh)
 
-Required Free Space during build time - based on Clang & LLVM 13:
+No X86 = 32-Bit only Scripts:
+1. I do not want to install 32-Bit Python from an unofficial Repository
+2. I could build the old 'lib32-python' from the AUR, but the Version is usually outdated and the Package Script has some Issues
+    1. Also the Build and Config Script for Packages will break, if they do not keep getting updated. This is unavoidable
+
+#### Required Space and Time to build Clang and LLVM
+
+This Data are based on Version 13. Later Versions can take more Space and can take more time to compile!
+
+Required Free Space during build time:
 1. Debug Build with Unit Tests: Circa 204.0 Gigabyte
 2. Release Build with Unit Tests: Circa 9.1 Gigabyte
 
-Required Free Space for Installation - based on Clang & LLVM 13:
+Required Free Space for Installation:
 1. Debug Build: Circa 73.3 Gigabyte
 2. Release Build: Circa 3.5 Gigabyte
 
@@ -193,21 +189,15 @@ Build time: 16 Cores 32 Threads, 64 GB RAM, 32 GB fixed SWAPFILE (SATA SSD):
 1. Debug Build: Limited to 16 Parallel Link Jobs = Circa 34 Minutes plus running Unit Tests plus installing = Circa 41 Minutes total
 2. Release Build: Circa 21 Minutes plus running Unit Tests plus installing = circa 25 Minutes total
 
-No X86 = 32-Bit only Scripts:
-1. I do not want to install 32-Bit Python from an unofficial Repository
-2. I could build the old 'lib32-python' from the AUR, but the Version is usually outdated and the Package Script has some Issues
-    1. Also the Build and Config Script for Packages will break, if they do not keep getting updated. This is unavoidable
-3. The X86_64 Compiler is able to build 32-Bit Binaries for the X86 Architecture anyway
-
 ### CMake - Build Management Tool
 
 Status: Used when a Tool or Library supports it or has it set as a fixed Dependency. <br>
 
 I usually use the latest CMake Version provided by my Linux Distribution.
 
-I Build only from Source, when I need to test specific fixes or a new Feature.
+I build only from Source, when I need to test specific fixes or a new Feature.
 
-Attention: By Default, You need an existing CMake and Ninja Installation to build CMake from Source! You can uncomment the Lines in the Script to use 'Make'. Do not forget to comment the CMake specific Parts - otherwise you will break the Scripts!
+Attention: By Default, You need an existing CMake and Ninja Installation to build CMake from Source! You can uncomment the Lines in the Script to use 'Make'. Do not forget to comment the CMake specific Parts - otherwise you will break the Scripts obviously!
 
 Infos:
 1. Official Documentation: https://cmake.org/cmake/help/latest/
@@ -319,7 +309,7 @@ Unknown yet
 
 Status: Hard Dependencies or recommended Libraries.
 
-1. NASM - Netwide Assembler. For OpenSSL. Optional but highly recommended
+1. NASM - Netwide Assembler. For OpenSSL. Optional but highly recommended: Some Algorithms are massively slower without NASM enabled.
     1. Preferable way to get it: Install nasm through your trusty Package Manager
     2. Alternatively: Download the latest prebuilt Binaries: https://www.nasm.us/pub/nasm/releasebuilds/
     3. Version: Always the latest
