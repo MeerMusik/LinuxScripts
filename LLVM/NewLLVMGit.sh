@@ -15,6 +15,9 @@ if [ -d $HOME/Dev/GitRepos/llvm-project/ ]; then rm --interactive=never --dir --
 fi
 cd $HOME/Dev/GitRepos/
 echo Set the wanted Branch accordingly or remove it completely to use the MAIN Branch
-git clone --branch release/19.x https://github.com/llvm/llvm-project.git --verbose --progress
+git clone --depth 1 --branch release/20.x https://github.com/llvm/llvm-project.git --verbose --progress
+cd $HOME/Dev/GitRepos/llvm-project/
+git config --add remote.origin.fetch '^refs/heads/users/*'
+git config --add remote.origin.fetch '^refs/heads/revert-*'
 echo DONE!
 exit
